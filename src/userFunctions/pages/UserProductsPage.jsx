@@ -8,9 +8,9 @@ import { ProductCards } from "../../products/components/ProductCards";
 export const UserProductsPage = () => {
   //get user to define user email
   const { user } = useAuth0();
-  console.log(user);
+
   //get data from  state
-  const { ok, page, products, isLoading, total_pages } = useSelector(
+  const { ok, page, products, isLoading, total_pages, error } = useSelector(
     (state) => state.products
   );
 
@@ -20,20 +20,22 @@ export const UserProductsPage = () => {
   const url = `${import.meta.env.VITE_PRODUCT_URL}entries?user=${
     user.email
   }&limit=${limit}&page=`; //url will be complete with page number when calling
-  console.log(url + 1);
-  console.log(products, ok, page); //manage errors
 
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getProducts(url + 1, method));
   }, []);
 
-  if (!products || products.length == 0) {
+  if ((ok && !products) || (ok && products.length == 0)) {
+    dispatch(getProducts(url + 1, method));
+  }
+  //products! || products.length == 0
+  if (!ok) {
     return (
       <div>
         <h1>Your items</h1>
-        <p> You have no items</p>
-        <Link to="/api/add" className="mg-lg sd-pd-sm bg-dark">
+        <p className="h-10"> You have no items</p>
+        <Link to="/api/add" className="mx-auto my-10 p-3 bg-dark">
           List an item
         </Link>
       </div>

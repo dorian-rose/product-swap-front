@@ -1,28 +1,41 @@
 import { useSelector, useDispatch } from "react-redux";
 import { ProductCards } from "../components/ProductCards";
 import { useNavigate } from "react-router-dom";
+import { Search } from "../components/Search";
 
 export const SearchAllPage = () => {
   const navigate = useNavigate();
+  //get search info
+  const { search, category } = useSelector((state) => state.searchProducts);
+  //collect product data from state
   const { ok, page, products, isLoading, total_pages } = useSelector(
-    (state) => state.searchProducts
+    (state) => state.products
   );
-  console.log(ok, page, products, isLoading, total_pages);
+
   if (!products || products.length == 0) {
     return (
       <>
-        <p>No results found</p>{" "}
+        <div className="grid grid-cols-2 gap-2">
+          <h1 className=" capitalize">{category}</h1>
+          <Search category={category} />
+        </div>
+        <h2 className="pt-10 capitalize">No search results for "{search}"</h2>
         <button
           className="txt-cntr bg-dark pd-sm w100 block"
           onClick={() => navigate(-1)}
         >
-          Return home
+          Back
         </button>
       </>
     );
   }
   return (
     <>
+      <div className="grid grid-cols-2 gap-2">
+        <h1 className=" capitalize">{category}</h1>
+        <Search category={category} />
+      </div>
+      <h2 className="pt-10 capitalize">Search results for "{search}"</h2>
       <section className="grid grid-cols-3 gap-5 grid-1-2-3 mg-md">
         {isLoading ? (
           <img src="https://i.gifer.com/ZKZg.gif" alt="loading gif" />
@@ -33,8 +46,29 @@ export const SearchAllPage = () => {
           ))
         )}
       </section>
+      <div className="mg-md txt-cntr">
+        <button
+          className="mg-sm"
+          disabled={isLoading || (page <= 1 && true)}
+          onClick={() =>
+            dispatch(getProducts(url + (parseInt(page) - 1), method))
+          }
+        >
+          Previous
+        </button>
+        <button className="mg-sm">Page {page}</button>
+        <button
+          className="mg-sm"
+          disabled={isLoading || (page >= total_pages && true)}
+          onClick={() =>
+            dispatch(getProducts(url + (parseInt(page) + 1), method))
+          }
+        >
+          Next
+        </button>
+      </div>
       <button
-        className="txt-cntr bg-dark pd-sm w100 block"
+        className="text-center border rounded-md border-black-600 mb-5 mx-auto px-5 py-1 block hover:bg-slate-50"
         onClick={() => navigate(-1)}
       >
         Back

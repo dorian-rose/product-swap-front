@@ -1,37 +1,36 @@
 import { setSearchProducts, startLoadingSearchProducts } from "../search/searchSlice"
 
-export const getSearchProducts = (url, method, body) => {
+export const getSearchProducts = (search, category) => {
+    // //detail for fetch
+    // let url;
+    // const limit = import.meta.env.VITE_LIMIT;
+    // if (category) {
+    //     url = `${import.meta.env.VITE_PRODUCT_URL
+    //         }search?search=${search}&limit=${limit}&page=1&category=${category}`;
+    // } else {
+    //     url = `${import.meta.env.VITE_PRODUCT_URL
+    //         }search?search=${search}&limit=${limit}&page=1`;
+    // }
+
 
     return async (dispatch, getState) => {
         dispatch(startLoadingSearchProducts())
 
         //call fetch
-        let data;
-        let options = {};
+        // let data;
+        // try {
 
-        const newData = { ...body } //from body
+        //     const response = await fetch(url);
 
-        try {
-            if (method == "POST" || method == "PUT" || method == "DELETE") {
+        //     data = await response.json();
 
-                options = {
-                    method: method,
-                    body: JSON.stringify(newData),
-                    headers: {
-                        "Content-type": "application/json",
-                    }
-                }
-            }
-            const response = await fetch(url, options);
+        // } catch (error) {
+        //     console.log('FAILED while fetching', error)
+        //     return error
+        // }
 
-            data = await response.json();
-            console.log(data)
-        } catch (error) {
-            console.log('FAILED while fetching', error)
-            return error
-        }
-        console.log(data.page, data.ok, data.data, data.total_pages,)
-        dispatch(setSearchProducts({ page: data.page, ok: data.ok, products: data.data, total_pages: data.total_pages }))
+        dispatch(setSearchProducts({ search, category }))
+        //dispatch(setSearchProducts({ page: data.page, ok: data.ok, products: data.data, total_pages: data.total_pages, search, category }))
     }
 
 

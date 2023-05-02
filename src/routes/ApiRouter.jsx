@@ -7,12 +7,11 @@ import {
   FavouritesPage,
 } from "../userFunctions/pages/index";
 //import { NavBar } from "../ui/NavBar";
-import { CategoryBar } from "../ui/CategoryBar";
+//import { CategoryBar } from "../ui/CategoryBar";
 
 export const ApiRouter = () => {
   return (
     <>
-      <CategoryBar />
       <Routes>
         <Route path="add" element={<AddProductPage />} />
         <Route path="user" element={<UserProductsPage />} />

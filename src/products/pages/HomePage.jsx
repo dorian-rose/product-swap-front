@@ -8,7 +8,7 @@ export const HomePage = () => {
   return (
     <>
       <section className="mg-md">
-        <Search />
+        {/* <Search /> */}
         <h1 className="title">Homepage</h1>
         {!isAuthenticated && <LoginButton />}
       </section>

@@ -18,6 +18,7 @@ export const productsSlice = createSlice({
             state.products = action.payload.products;
             state.total_pages = action.payload.total_pages;
             state.ok = action.payload.ok
+            state.error = action.payload.error
         }
     }
 

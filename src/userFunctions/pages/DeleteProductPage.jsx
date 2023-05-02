@@ -17,8 +17,6 @@ export const DeleteProductPage = () => {
   const url = `${import.meta.env.VITE_PRODUCT_URL}entry?id=${id}`;
   const method = "GET";
 
-  console.log(ok); //manage errors here
-
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getProducts(url, method));

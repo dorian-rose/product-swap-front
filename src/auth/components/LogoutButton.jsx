@@ -6,6 +6,7 @@ export const LogoutButton = () => {
 
   return (
     <button
+      className="border rounded-md px-1"
       onClick={() =>
         logout({ logoutParams: { returnTo: window.location.origin } })
       }

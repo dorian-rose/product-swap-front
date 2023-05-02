@@ -9,10 +9,10 @@ export const DeleteButton = ({ id_entry }) => {
   const { ok, page, products, isLoading, total_pages } = useSelector(
     (state) => state.products
   );
-  console.log("delete", ok);
+
   //define body, method and url for fetch
   const body = { id_entry };
-  console.log(body);
+
   const url = `${import.meta.env.VITE_PRODUCT_URL}delete`;
   const method = "DELETE";
 
