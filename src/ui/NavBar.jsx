@@ -1,60 +1,36 @@
-import { NavLink } from "react-router-dom";
-import { useAuth0 } from "@auth0/auth0-react";
+import { Search } from "../products/components/Search";
+import { CategoryBar } from "./CategoryBar";
+import { UserBar } from "./UserBar";
+import { Hamburger } from "./components/Hamburger";
+import { useState } from "react";
 import { LogoutButton } from "../auth/components/LogoutButton";
 import { LoginButton } from "../auth/components/LoginButton";
+import { useAuth0 } from "@auth0/auth0-react";
 
 export const NavBar = () => {
   const { isAuthenticated } = useAuth0();
+  const [menuPosition, setMenuPosition] = useState("hidden");
+  const changePosition = () => {
+    if (menuPosition == "block") {
+      setMenuPosition("hidden");
+    } else {
+      setMenuPosition("block");
+    }
+  };
   return (
-    <div>
-      <ul className="relative px-4 py-4 flex flex-col md:flex-row justify-between items-right bg-white">
-        {isAuthenticated && (
-          <li>
-            <NavLink
-              to="/api/add"
-              className={({ isActive }) =>
-                `nav-link ${isActive ? "isActive" : ""} m-2`
-              }
-            >
-              List an item
-            </NavLink>
-          </li>
-        )}
-        {isAuthenticated && (
-          <li>
-            <NavLink
-              to="/api/user"
-              className={({ isActive }) =>
-                `nav-link ${isActive ? "isActive" : ""} m-2`
-              }
-            >
-              Manage my items
-            </NavLink>
-          </li>
-        )}
-        {isAuthenticated && (
-          <li>
-            <NavLink
-              to="/api/favourites"
-              className={({ isActive }) =>
-                `nav-link ${isActive ? "isActive" : ""} m-2`
-              }
-            >
-              View Favourites
-            </NavLink>
-          </li>
-        )}
-
-        {isAuthenticated ? (
-          <li className="m-3">
-            <LogoutButton />
-          </li>
-        ) : (
-          <li className="m-3">
-            <LoginButton />
-          </li>
-        )}
-      </ul>
-    </div>
+    <nav className="mb-10 border-b pb-5 md:pb-0">
+      <div className="grid grid-flow-col auto-cols-auto pt-4 m-5  md:hidden">
+        <Search />
+        {/* {isAuthenticated ? <LogoutButton /> : <LoginButton />} */}
+        <Hamburger
+          changePosition={changePosition}
+          menuPosition={menuPosition}
+        />
+      </div>
+      <div className={`${menuPosition} md:block`}>
+        <UserBar />
+        <CategoryBar />
+      </div>
+    </nav>
   );
 };

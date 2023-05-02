@@ -40,20 +40,24 @@ export const Search = ({ category }) => {
   };
 
   return (
-    <div className="flex flex-col border rounded-md">
+    <div className="flex flex-col w-full">
       <form
-        className="flex justify-end "
+        className="flex justify-end  border rounded-md"
         onSubmit={handleSubmit((data) => callDispatch(data))}
       >
         <input
           {...register("search", {
-            required: "Search term or phrase is required",
+            required: "! enter search",
           })}
           type="search"
           placeholder={`Search ${category || "all"}`}
           name="search"
+          className="placeholder:font-thin focus:outline-none focus:border-turquoise focus:border-2 focus:border-solid rounded-md w-full"
         />
-        <p className="txt-cntr"> {errors.search?.message}</p>
+        <p className="w-32 txt-cntr text-burgundy font-thin">
+          {" "}
+          {errors.search?.message}
+        </p>
         {/* <input type="submit" /> */}
       </form>
       {productErrors && (

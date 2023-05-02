@@ -32,14 +32,14 @@ export const FavouriteButton = ({ product }) => {
   return (
     <>
       {!inFave ? (
-        <button onClick={addFavourites} className="w-6 mx-auto mb-5">
+        <button onClick={addFavourites} className="m-3 ">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
             strokeWidth={1.5}
             stroke="black"
-            className="w-6 h-6"
+            className="w-6 h-6 hover:fill-turquoise"
           >
             <path
               strokeLinecap="round"
@@ -49,14 +49,14 @@ export const FavouriteButton = ({ product }) => {
           </svg>
         </button>
       ) : (
-        <button onClick={removeFavourites} className="w-6 mx-auto mb-5">
+        <button onClick={removeFavourites} className="m-3">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="red"
             viewBox="0 0 24 24"
             strokeWidth={1.5}
             stroke="red"
-            className="w-6 h-6"
+            className="w-6 h-6 hover:fill-none"
           >
             <path
               strokeLinecap="round"
