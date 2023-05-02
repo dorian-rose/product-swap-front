@@ -1,9 +1,12 @@
 import { useNavigate } from "react-router-dom";
 import { getSearchProducts } from "../store/slice/search/searchThunk";
+import { getProducts } from "../store/slice/products/thunk";
 import { useForm } from "react-hook-form";
 import { useSelector, useDispatch } from "react-redux";
+import { useState } from "react";
 
 export const Search = ({ category }) => {
+  const [productErrors, setProductErrors] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -12,41 +15,50 @@ export const Search = ({ category }) => {
     formState: { errors },
     handleSubmit,
   } = useForm({ mode: "all" });
-  //const { body, setBody, handleChange } = useForm("");
 
   const callDispatch = ({ search }) => {
-    console.log(search);
-    //define body, method and url for fetch
-    const limit = import.meta.env.VITE_LIMIT;
-    const url = `${
-      import.meta.env.VITE_PRODUCT_URL
-    }search?search=${search}&limit=${limit}&page=1&category=${category}`;
+    //detail for fetch
+    let url;
     const method = "GET";
+    const limit = import.meta.env.VITE_LIMIT;
+    if (category) {
+      url = `${
+        import.meta.env.VITE_PRODUCT_URL
+      }search?search=${search}&limit=${limit}&page=1&category=${category}`;
+    } else {
+      url = `${
+        import.meta.env.VITE_PRODUCT_URL
+      }search?search=${search}&limit=${limit}&page=1`;
+    }
+
     //make dispatch
-    dispatch(getSearchProducts(url, method));
+    dispatch(getSearchProducts(search, category));
+    dispatch(getProducts(url, method));
+
     //redirect to result page
     navigate("/search");
   };
 
   return (
-    <form
-      className="flex justify-end "
-      onSubmit={handleSubmit((data) => callDispatch(data))}
-    >
-      <input
-        {...register("search", {
-          required: "Search term or phrase is required",
-          minLength: {
-            value: 2,
-            message: "Item must be at least two characteres long",
-          },
-        })}
-        type="search"
-        placeholder="Search"
-        name="search"
-      />
-      <p className="txt-cntr"> {errors.search?.message}</p>
-      <input type="submit" />
-    </form>
+    <div className="flex flex-col border rounded-md">
+      <form
+        className="flex justify-end "
+        onSubmit={handleSubmit((data) => callDispatch(data))}
+      >
+        <input
+          {...register("search", {
+            required: "Search term or phrase is required",
+          })}
+          type="search"
+          placeholder={`Search ${category || "all"}`}
+          name="search"
+        />
+        <p className="txt-cntr"> {errors.search?.message}</p>
+        {/* <input type="submit" /> */}
+      </form>
+      {productErrors && (
+        <p className="text-end text-red-600 mx-15">No results found</p>
+      )}
+    </div>
   );
 };

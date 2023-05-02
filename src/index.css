@@ -17,8 +17,14 @@
   list-style: none;
   text-decoration: none;
 }
+.isActive {
+  font-weight: bolder;
+}
+:disabled {
+  color: grey;
+}
 
-/* universal classes */
+/* universal classes 
 .flex-row {
   display: flex;
   flex-direction: column;
@@ -123,14 +129,14 @@
 .red {
   color: red;
 }
-/* individual elements */
+/* individual elements 
 .error-msg {
   color: red;
   margin: 0 10px, 20px;
   font-style: italic;
 }
 
-/* nav */
+/* nav 
 nav a {
   color: var(--light);
   font-size: 17px;
@@ -143,7 +149,7 @@ nav li,
 .category-filter a {
   color: var(--dark);
 }
-/* end nav */
+/* end nav 
 
 p.error-message {
   margin: 20px;
@@ -186,7 +192,7 @@ footer {
   font-size: 15px;
 }
 
-/* input[type="submit"] , */
+/* input[type="submit"] , 
 input[type="search"] {
   height: 30px;
   border-radius: 5px;
@@ -207,7 +213,7 @@ input[type="search"] {
 /* #email {
   display: none;
 } */
-/* search phrases */
+/* search phrases 
 .search-product {
   border: 1px solid rgb(1, 63, 1);
   width: fit-content;
@@ -223,7 +229,7 @@ input[type="search"] {
 /* ========================= */
 /* 768 */
 /* ========================= */
-
+/*
 @media screen and (min-width: 768px) {
   .grid-1-2-3 {
     grid-template-columns: repeat(2, 1fr);
@@ -258,7 +264,7 @@ input[type="search"] {
 /* ========================= */
 /* 996*/
 /* ========================= */
-
+/* 
 @media screen and (min-width: 996px) {
   .grid-1-2-3 {
     grid-template-columns: repeat(3, 1fr);
@@ -276,3 +282,4 @@ input[type="search"] {
     margin: 30px 40px;
   }
 }
+*/

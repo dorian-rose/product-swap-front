@@ -1,27 +1,28 @@
 import { NavLink } from "react-router-dom";
+import { Search } from "../products/components/Search";
 // import { useAuth0 } from "@auth0/auth0-react";
 // import { LogoutButton } from "../auth/components/LogoutButton";
 // import { LoginButton } from "../auth/components/LoginButton";
 
 export const CategoryBar = () => {
   return (
-    <div className="category-filter">
-      <ul className="flex-row jst-cntr">
+    <div>
+      <ul className="relative px-4 py-4 flex flex-col md:flex-row justify-between items-left bg-white">
         <li>
           <NavLink
             to="/"
             className={({ isActive }) =>
-              `nav-link ${isActive ? "isActive" : ""} `
+              `nav-link ${isActive ? "isActive" : ""} m-2`
             }
           >
-            Search
+            Home
           </NavLink>
         </li>
         <li>
           <NavLink
             to="/books"
             className={({ isActive }) =>
-              `nav-link ${isActive ? "isActive" : ""} `
+              `nav-link ${isActive ? "isActive" : ""} m-2`
             }
           >
             Books
@@ -31,7 +32,7 @@ export const CategoryBar = () => {
           <NavLink
             to="/clothing"
             className={({ isActive }) =>
-              `nav-link ${isActive ? "isActive" : ""} `
+              `nav-link ${isActive ? "isActive" : ""} m-2`
             }
           >
             Clothing
@@ -41,7 +42,7 @@ export const CategoryBar = () => {
           <NavLink
             to="/footwear"
             className={({ isActive }) =>
-              `nav-link ${isActive ? "isActive" : ""} `
+              `nav-link ${isActive ? "isActive" : ""} m-2`
             }
           >
             Footwear
@@ -51,7 +52,7 @@ export const CategoryBar = () => {
           <NavLink
             to="/furniture"
             className={({ isActive }) =>
-              `nav-link ${isActive ? "isActive" : ""} `
+              `nav-link ${isActive ? "isActive" : ""} m-2`
             }
           >
             Furniture
@@ -61,11 +62,22 @@ export const CategoryBar = () => {
           <NavLink
             to="/electronics"
             className={({ isActive }) =>
-              `nav-link ${isActive ? "isActive" : ""} `
+              `nav-link ${isActive ? "isActive" : ""} m-2`
             }
           >
             Electronics
           </NavLink>
+        </li>
+        <li className="m-3">
+          <Search />
+          {/* <NavLink
+            to="/"
+            className={({ isActive }) =>
+              `nav-link ${isActive ? "isActive" : ""} `
+            }
+          >
+            Search all products
+          </NavLink> */}
         </li>
       </ul>
     </div>

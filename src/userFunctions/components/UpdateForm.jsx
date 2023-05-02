@@ -2,10 +2,16 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../../products/store/slice/products/thunk";
 import { useForm } from "react-hook-form";
+import { useState } from "react";
 
 export const UpdateForm = (props) => {
+  //dispatch and navigate to dispatch and navigate back on completion
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [file, setFile] = useState("");
   //variables sent in props
-  const { category, description, email, image, title } = props;
+  const { id_entry, category, description, email, image, title } = props;
+
   //imports from useform to capture and validate form data
   const {
     register,
@@ -13,24 +19,31 @@ export const UpdateForm = (props) => {
     handleSubmit,
   } = useForm({ mode: "all" });
 
-  //dispatch and navigate to dispatch and navigate back on completion
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-
   //send to thunk and store
-  const callDispatch = (body) => {
-    console.log(body);
-    //define body, method and url for fetch
-    const url = `${import.meta.env.VITE_PRODUCT_URL}create`;
-    const method = "POST";
-    dispatch(getProducts(url, method, body));
-    navigate(-2);
+  const callDispatch = (data) => {
+    //define body from formdata for fetch
+    const { title, description, image, category, email, claimed } = data;
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("title", title);
+    formData.append("description", description);
+    formData.append("image", image);
+    formData.append("category", category);
+    formData.append("email", email);
+    formData.append("claimed", claimed);
+    formData.append("id_entry", id_entry);
+
+    //define  method and url for fetch
+    const url = `${import.meta.env.VITE_PRODUCT_URL}update`;
+    const method = "PUT";
+    dispatch(getProducts(url, method, formData));
+    navigate("/api/user");
   };
 
   //return form
   return (
     <>
-      <h2 className="mg-md">Add a new listing:</h2>
+      <h2 className="mg-md">Update a listing:</h2>
       <form
         className="add-form"
         onSubmit={handleSubmit((data) => callDispatch(data))}
@@ -64,11 +77,19 @@ export const UpdateForm = (props) => {
         />
         <p className="txt-cntr"> {errors.description?.message}</p>
         <input
+          onChange={(ev) => setFile(ev.target.files[0])}
+          type="file"
+          accept=".jpg"
+          name="file"
+          id="file"
+        />
+        <input
           {...register("image", {
             required: "Image is required",
           })}
+          className="none"
           type="text"
-          defaultValue={image}
+          defaultValue={image.toString()}
           name="image"
           id="image"
         />
@@ -127,7 +148,7 @@ export const UpdateForm = (props) => {
         <input type="submit" />
       </form>
       <button
-        className="txt-cntr bg-dark pd-sm w100 block"
+        className="text-center border rounded-md border-black-600 mt-5 mx-auto px-5 py-1 block hover:bg-slate-50"
         onClick={() => navigate(-1)}
       >
         Back

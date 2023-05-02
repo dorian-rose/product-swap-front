@@ -1,6 +1,6 @@
 import { CategoryContainer } from "../components/CategoryContainer";
 
-export const FootWear = () => {
-  const category = "footwear";
+export const ElectronicsPage = () => {
+  const category = "electronics";
   return <CategoryContainer category={category} />;
 };

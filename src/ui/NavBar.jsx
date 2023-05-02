@@ -4,26 +4,16 @@ import { LogoutButton } from "../auth/components/LogoutButton";
 import { LoginButton } from "../auth/components/LoginButton";
 
 export const NavBar = () => {
-  const { user, isAuthenticated, isLoading } = useAuth0();
+  const { isAuthenticated } = useAuth0();
   return (
-    <nav className="bg-dark">
-      <ul className="flex-row jst-cntr">
-        <li className="mg-md">
-          <NavLink
-            to="/"
-            className={({ isActive }) =>
-              `nav-link ${isActive ? "isActive" : ""} `
-            }
-          >
-            Home
-          </NavLink>
-        </li>
+    <div>
+      <ul className="relative px-4 py-4 flex flex-col md:flex-row justify-between items-right bg-white">
         {isAuthenticated && (
-          <li className="mg-md">
+          <li>
             <NavLink
               to="/api/add"
               className={({ isActive }) =>
-                `nav-link ${isActive ? "isActive" : ""} `
+                `nav-link ${isActive ? "isActive" : ""} m-2`
               }
             >
               List an item
@@ -31,11 +21,11 @@ export const NavBar = () => {
           </li>
         )}
         {isAuthenticated && (
-          <li className="mg-md">
+          <li>
             <NavLink
               to="/api/user"
               className={({ isActive }) =>
-                `nav-link ${isActive ? "isActive" : ""} `
+                `nav-link ${isActive ? "isActive" : ""} m-2`
               }
             >
               Manage my items
@@ -43,11 +33,11 @@ export const NavBar = () => {
           </li>
         )}
         {isAuthenticated && (
-          <li className="mg-md">
+          <li>
             <NavLink
               to="/api/favourites"
               className={({ isActive }) =>
-                `nav-link ${isActive ? "isActive" : ""} `
+                `nav-link ${isActive ? "isActive" : ""} m-2`
               }
             >
               View Favourites
@@ -56,15 +46,15 @@ export const NavBar = () => {
         )}
 
         {isAuthenticated ? (
-          <li>
+          <li className="m-3">
             <LogoutButton />
           </li>
         ) : (
-          <li>
+          <li className="m-3">
             <LoginButton />
           </li>
         )}
       </ul>
-    </nav>
+    </div>
   );
 };
