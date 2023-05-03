@@ -41,30 +41,17 @@ export const AddForm = () => {
 
     navigate("/api/user");
   };
-  // console.log(ok, error);
-  // if (!ok) {
-  //   console.log("helllo");
-  //   return (
-  //     <>
-  //       <p className="text-red-600">{error}</p>{" "}
-  //       <button
-  //         className="text-center border rounded-md border-black-600 mb-5 mx-auto px-5 py-1 block hover:bg-slate-50"
-  //         onClick={() => navigate("api/create")}
-  //       >
-  //         Back
-  //       </button>
-  //     </>
-  //   );
-  // }
 
   return (
     <>
-      <h2 className="mg-md">Add a new listing:</h2>
+      <h1 className="mx-5 uppercase tracking-widest text-2xl">
+        Add a new listing:
+      </h1>
       {isLoading && (
         <img src="https://i.gifer.com/ZKZg.gif" alt="loading gif" />
       )}
       <form
-        className="add-form"
+        className="m-5 border border-turquoise border-1 rounded-md p-5"
         onSubmit={handleSubmit((data) => callDispatch(data))}
       >
         <input
@@ -79,8 +66,11 @@ export const AddForm = () => {
           placeholder="Item title"
           name="title"
           id="title"
+          className="border mt-2 px-2 h-16 font-thin  focus:outline-none focus:border-turquoise focus:border-2 focus:border-solid rounded-md w-full"
         />
-        <p className="txt-cntr"> {errors.title?.message}</p>
+        <p className="font-thin italic text-burgundy">
+          {errors.title?.message}
+        </p>
         <input
           {...register("description", {
             required: "Description is required",
@@ -93,25 +83,29 @@ export const AddForm = () => {
           placeholder="Item description"
           name="description"
           id="description"
+          className="border mt-2 px-2 h-16 font-thin  focus:outline-none focus:border-turquoise focus:border-2 focus:border-solid rounded-md w-full"
         />
-        <p className="txt-cntr"> {errors.description?.message}</p>
+        <p className="font-thin italic text-burgundy">
+          {errors.description?.message}
+        </p>
         <input
           onChange={(ev) => setFile(ev.target.files[0])}
-          // {...register("image", {
-          //   required: "Image is required",
-          // })}
           required
           type="file"
           accept=".jpg"
           placeholder="Image"
           name="image"
           id="image"
+          className="border px-2 h-16 font-thin  focus:outline-none focus:border-turquoise focus:border-2 focus:border-solid rounded-md w-full"
         />
-        <p className="txt-cntr red"> {errors.image?.message}</p>
+        <p className="font-thin italic text-burgundy">
+          {errors.image?.message}
+        </p>
         <select
           {...register("category", { required: "Category is required" })}
           name="category"
           id="category"
+          className="border mt-2 px-2 h-16 font-thin  focus:outline-none focus:border-turquoise focus:border-2 focus:border-solid rounded-md w-full"
         >
           <option value="">Select a category</option>
           <option value="clothing">Clothing</option>
@@ -120,9 +114,11 @@ export const AddForm = () => {
           <option value="furniture">Furniture</option>
           <option value="electronics">Electronics</option>
         </select>
-        <p className="txt-cntr red"> {errors.category?.message}</p>
+        <p className="font-thin italic text-burgundy">
+          {errors.category?.message}
+        </p>
         <input
-          className="none"
+          className="hidden"
           defaultValue={user.email}
           {...register("email")}
           type="text"
@@ -130,17 +126,20 @@ export const AddForm = () => {
           id="email"
         />
         <input
-          className="none"
+          className="hidden"
           defaultValue={false}
           {...register("claimed")}
           type="text"
           name="claimed"
           id="claimed"
         />
-        <input type="submit" />
+        <input
+          className="mt-2 w-full border border-turquoise hover:bg-turquoise hover:text-white rounded-md px-2 "
+          type="submit"
+        />
       </form>
       <button
-        className="txt-cntr bg-dark pd-sm w100 block"
+        className="m-5 border border-turquoise hover:bg-turquoise hover:text-white rounded-md px-2 shadow-lg"
         onClick={() => navigate(-1)}
       >
         Back

@@ -8,11 +8,10 @@ function App() {
       <header className="bg-slate-100 p-10 text-center border-b border-black">
         Header
       </header>
-      <nav className="flex justify-between border-b">
-        <CategoryBar />
+      <nav>
         <NavBar />
       </nav>
-      <main className="mx-20">
+      <main className="mx-10 md:mx-20">
         <AppRouter />
       </main>
       <footer className="bg-slate-100 p-10 text-center border-t border-black">

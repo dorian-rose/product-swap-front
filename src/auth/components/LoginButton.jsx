@@ -5,7 +5,10 @@ export const LoginButton = () => {
   const { loginWithRedirect } = useAuth0();
 
   return (
-    <button className="border rounded-md" onClick={() => loginWithRedirect()}>
+    <button
+      className="border rounded-md px1 max-w-fit"
+      onClick={() => loginWithRedirect()}
+    >
       Log In
     </button>
   );
