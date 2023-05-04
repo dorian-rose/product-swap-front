@@ -2,13 +2,20 @@ import { Link } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import { FavouriteButton } from "./FavouriteButton";
 import { InterestedButton } from "./InterestedButton";
+
+/**
+ * function that receives data of product and presents it in return jsx
+ * @param {Object} props Object whose properties contain product data
+ * @returns jsx
+ */
 export const ProductCards = (props) => {
   const { user } = useAuth0();
 
+  //deconstruct variables from object to retrieve data of product
   const { title, description, formatdate, image, id_entry, email } = props;
 
+  //text displayed in <p> in return will depend on user status
   let linkText = "";
-
   if (user?.email == email) {
     linkText = "View or update your item";
   } else {
@@ -27,16 +34,14 @@ export const ProductCards = (props) => {
         {title}
       </h3>
       <h4 className="mx-5 capitalize font-light">{description}</h4>
-      <div className="flex justify-start m-3">
+      <div className="flex justify-start m-5">
         {user?.email && user?.email != email && (
           <FavouriteButton product={props} />
         )}
         {!user && <InterestedButton />}
-        <p className="m-3 border border-turquoise hover:bg-turquoise hover:text-white rounded-md px-2 shadow-lg">
-          <Link className="font-light" to={`/view/${id_entry}`}>
+          <Link className="font-light m-3 border border-turquoise hover:bg-turquoise hover:text-white rounded-md px-2 shadow-lg" to={`/view/${id_entry}`}>
             {linkText}
           </Link>
-        </p>
       </div>
       <p className="m-5 text-xs font-light ">Date posted: {formatdate}</p>
     </article>

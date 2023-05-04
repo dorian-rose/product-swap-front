@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getProducts } from "../store/slice/products/thunk";
+import { getProducts } from "../../store/slice/products/thunk";
 import { ProductCards } from "../components/ProductCards";
 import { Search } from "../components/Search";
 

@@ -1,21 +1,22 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-export const productsSlice = createSlice({
+export const userSlice = createSlice({
 
-    name: 'products',
+    name: 'users',
     initialState: {
         page: 1,
-        products: [],
+        users: [],
         isLoading: false,
     },
     reducers: {
-        startLoadingProducts: (state) => {
+        startLoadingUsers: (state) => {
             state.isLoading = true;
         },
-        setProducts: (state, action) => {
+        setUsers: (state, action) => {
+
             state.isLoading = false;
             state.page = action.payload.page;
-            state.products = action.payload.products;
+            state.users = action.payload.users;
             state.total_pages = action.payload.total_pages;
             state.ok = action.payload.ok
             state.error = action.payload.error
@@ -24,4 +25,4 @@ export const productsSlice = createSlice({
 
 })
 
-export const { setProducts, startLoadingProducts } = productsSlice.actions
+export const { setUsers, startLoadingUsers } = userSlice.actions

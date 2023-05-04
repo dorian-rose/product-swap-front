@@ -2,13 +2,13 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../../store/slice/products/thunk";
 import { useParams } from "react-router-dom";
-import { ProductDetail } from "../components/ProductDetail";
+import { ProductDetail } from "../../products/components/ProductDetail";
 
 /**
  * function that retrieves data (product id) from params and uses this to dispatch to fetch to retrieve data, displays data in returned jsx
  * @returns jsx and component
  */
-export const DetailPage = () => {
+export const AdminDetailPage = () => {
   //get product id
   const { id } = useParams();
   //define url and method required for fetch
@@ -26,11 +26,10 @@ export const DetailPage = () => {
 
   return (
     <>
-      {isLoading && <h2>Loading...</h2>}
-
+       {isLoading && <h2>Loading...</h2>}
       {products.map((product) => (
         <ProductDetail key={product.id_entry} product={product} />
-      ))}
+      ))} 
     </>
   );
 };

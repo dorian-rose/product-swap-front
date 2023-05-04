@@ -1,13 +1,18 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
-
 import { FavouriteButton } from "./FavouriteButton";
 import { InterestedButton } from "./InterestedButton";
 
+/**
+ * function that receives product data and returns jsx displaying data
+ * @param {Object} param0 deconstructed =>"product"=> product data
+ * @returns jsx
+ */
 export const ProductDetail = ({ product }) => {
+  //navigate to redirect, user to decide view (buttons) displayed
   const navigate = useNavigate();
   const { user, isAuthenticated } = useAuth0();
-
+console.log("user", user.email, product.email)
   return (
     <>
       <section className="shadow-lg max-w-4xl mx-auto  grid md:grid-cols-2  justify-between">
@@ -19,7 +24,7 @@ export const ProductDetail = ({ product }) => {
           />
         </div>
         <div className="product-info max-w-fit flex flex-col justify-center">
-          <h1 className="uppercase tracking-widest text-2xl md:text-3xl m-5 md:m-10">
+          <h1 className="uppercase tracking-widest text-2xl md:text-3xl m-5 md:m-10 font-light text-turquoise">
             {product.title}
           </h1>
           <p className="m-5 md:mx-10 md:my5">
@@ -38,7 +43,7 @@ export const ProductDetail = ({ product }) => {
         </div>
       </section>
 
-      {user?.email == product.email && (
+      {user?.email == product.email | user?.role=="admin" && (
         <div className="seller-buttons flex justify-center">
           <button
             className="text-center border rounded-md border-turquoise m-5  px-5 py-1  hover:bg-turquoise hover:text-white"
@@ -56,7 +61,7 @@ export const ProductDetail = ({ product }) => {
       )}
 
       <button
-        className="block mx-auto mb-7 mt-1 border border-turquoise hover:bg-turquoise hover:text-white rounded-md px-2 shadow-lg"
+        className="block mx-auto mb-7 mt-4 border border-turquoise hover:bg-turquoise hover:text-white rounded-md px-2 shadow-lg"
         onClick={() => navigate(-1)}
       >
         Back

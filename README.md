@@ -15,6 +15,9 @@ To start project:
 Page structure: Pages that are accessible to unregistered users as well as registered users (users) and admin are structured through "product routers". While these pages are accessible to unregistered users, some views and functions are restricted to registered users.
 Pages that are only accessible to registered users and admin are contained in "api routers".
 
+ADMIN: pepe@correo.es
+Password: QueVivaPepe2023
+
 styles: <h2 className="tracking-widest text-base md:text-lg font-light mt-7">
 
   <h1 className="uppercase text-center tracking-widest text-2xl md:text-3xl">

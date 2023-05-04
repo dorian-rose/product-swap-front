@@ -6,12 +6,17 @@ import {
   UpdateProductPage,
   FavouritesPage,
 } from "../userFunctions/pages/index";
-//import { NavBar } from "../ui/NavBar";
-//import { CategoryBar } from "../ui/CategoryBar";
+import { NavBar } from "../ui/NavBar";
+
 
 export const ApiRouter = () => {
+ 
   return (
     <>
+        <nav>
+          <NavBar />
+        </nav> 
+         <main className="mx-10 md:mx-20">
       <Routes>
         <Route path="add" element={<AddProductPage />} />
         <Route path="user" element={<UserProductsPage />} />
@@ -20,6 +25,7 @@ export const ApiRouter = () => {
         <Route path="favourites" element={<FavouritesPage />} />
         <Route path="/*" element={<Navigate to={"/"} />} />
       </Routes>
+      </main>
     </>
   );
 };

@@ -1,16 +1,10 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../../store/slice/products/thunk";
-import { ProductCards } from "../components/ProductCards";
-import { Search } from "../components/Search";
+import { ProductRow } from "../components/ProductRow";
 
-/**
- * Function that dispatches, receives data and returns jsx presenting data
- * @param {Object} param0 category of product to search and display
- * @returns jsx
- */
-export const CategoryContainer = ({ category }) => {
-  //collect data from state
+export const AdminProductContainer = () => {
+    //collect data from state
   const { ok, page, products, isLoading, total_pages, error } = useSelector(
     (state) => state.products
   );
@@ -19,7 +13,7 @@ export const CategoryContainer = ({ category }) => {
   const limit = import.meta.env.VITE_LIMIT;
   const url = `${
     import.meta.env.VITE_PRODUCT_URL
-  }category?category=${category}&limit=${limit}&page=`;
+  }entries?limit=${limit}&page=`;
   const method = "GET";
 
   //dispatch to fetch
@@ -27,32 +21,44 @@ export const CategoryContainer = ({ category }) => {
   useEffect(() => {
     dispatch(getProducts(url + 1, method));
   }, []);
+console.log(ok)
+  if (ok && !products)  {
+    dispatch(getProducts(url + 1, method));
+  }
 
-  return (
-    <div>
-      <h1 className="uppercase text-center tracking-widest text-2xl md:text-3xl">
-        {category}
-      </h1>
-      <Search category={category} />
-
-      <h2 className="tracking-widest text-base md:text-lg font-light mt-7">
-        Look at these {category}...
-      </h2>
-
-      <section className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-        {isLoading ? (
+ console.log(products)
+    return (<>
+      {isLoading ? (
           <img src="https://i.gifer.com/ZKZg.gif" alt="loading gif" />
-        ) : ok ? (
+        ) :  (
+<div class='overflow-x'>
+    <table className="table-auto overflow-scroll my-5 md:my-10 w-full border-collapse bg-white text-left text-base font-thin text-gray-500">
+ <thead className="bg-gray-50">
+  <tr>
+    <th scope="col" className="px-6 py-4 font-medium text-gray-900">Product</th>
+    <th  scope="col" className="px-6 py-4 font-medium text-gray-900">Category</th>
+    <th  scope="col" className="px-6 py-4 font-medium text-gray-900">User</th>
+    <th  scope="col" className="px-6 py-4 font-medium text-gray-900">Available</th>
+    <th  scope="col" className="px-6 py-4 font-medium text-gray-900"></th>
+    <th  scope="col" className="px-6 py-4 font-medium text-gray-900"></th>
+  </tr>
+  </thead>
+  <tbody className="divide-y divide-gray-100 border-t border-gray-100">  
+     {ok ? (
           products.map((product) => (
-            <ProductCards key={product.id_entry} {...product} />
+            <ProductRow key={product.id_entry} {...product} />
           ))
         ) : (
           <p className="tracking-widest text-burgundy text-base font-light my-7">
             {error}
           </p>
         )}
-      </section>
-      {ok && (
+    
+  </tbody>
+
+</table>
+</div>)}
+{ok && (
         <div className="text-center mb-10">
           <button
             className="font-light m-2 border border-turquoise disabled:hover:bg-white disabled:hover:text-slate-600 disabled:shadow-none disabled:border-slate-200 hover:bg-turquoise hover:text-white rounded-md px-2 shadow-lg"
@@ -77,6 +83,6 @@ export const CategoryContainer = ({ category }) => {
           </button>
         </div>
       )}
-    </div>
-  );
-};
+</>
+)
+}
