@@ -13,12 +13,6 @@ export const searchSlice = createSlice({
             state.isLoading = true;
         },
         setSearchProducts: (state, action) => {
-
-            // state.isLoading = false;
-            // state.page = action.payload.page;
-            //  state.searchProducts = action.payload.products;
-            // state.total_pages = action.payload.total_pages;
-            // state.ok = action.payload.ok
             state.search = action.payload.search
             state.category = action.payload.category
         }

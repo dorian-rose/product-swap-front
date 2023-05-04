@@ -1,9 +1,14 @@
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getProducts } from "../../products/store/slice/products/thunk";
+import { getProducts } from "../../store/slice/products/thunk";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 
+/**
+ * function that returns a form - on receiving inputs dispatches via PUT fetch to update product
+ * @param {Object} props object containing details of a product
+ * @returns jsx
+ */
 export const UpdateForm = (props) => {
   //dispatch and navigate to dispatch and navigate back on completion
   const dispatch = useDispatch();

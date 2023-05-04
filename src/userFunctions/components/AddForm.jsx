@@ -1,10 +1,14 @@
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getProducts } from "../../products/store/slice/products/thunk";
+import { getProducts } from "../../store/slice/products/thunk";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 
+/**
+ * function that displays a form (jsx) - on receiving form inputs dispatches form input data to fetch/reducers
+ * @returns jsx
+ */
 export const AddForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();

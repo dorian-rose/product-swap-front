@@ -1,6 +1,10 @@
 import { CategoryContainer } from "../components/CategoryContainer";
 
-export const Furniture = () => {
+/**
+ * function that returns component
+ * @returns component
+ */
+export const FurniturePage = () => {
   const category = "furniture";
   return <CategoryContainer category={category} />;
 };

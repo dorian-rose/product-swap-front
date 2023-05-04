@@ -1,33 +1,50 @@
 import { getLocal, setLocal } from "../helpers/localStorage";
 import { useState, useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
-
+import { setFavourites } from "../../store/slice/favourites/faveSlice"
+import { useDispatch, useSelector } from "react-redux";
+/**
+ *
+ * @param {Object} param0 deconstructed to get "product" object whose properties contain data of a product
+ * @returns  button (jsx), onclick the button adds product to Local Storage (if not already there) or removes from local storage if already there.
+ */
 export const FavouriteButton = ({ product }) => {
-  const { user } = useAuth0();
+  //const { user } = useAuth0();
   const [inFave, setInFave] = useState(false);
-  const [favourites, setFavourites] = useState(getLocal(user.email));
 
+  //collect state
+   const {  favouritesArray } = useSelector(
+    (state) => state.favourites
+  );
+console.log(favouritesArray)
+  //const [favourites, setFavourites] = useState(getLocal(user.email));
+ const dispatch = useDispatch();
   //onclick favourite button, add to favourites state
   const addFavourites = () => {
-    setFavourites([...favourites, product]);
+    dispatch(setFavourites([...favouritesArray, product]));
+   
     setInFave(true);
   };
 
   //onclick remove button, remove product from favourites state
   const removeFavourites = () => {
-    const newFavourites = favourites.filter(
+    const newFavourites = favouritesArray.filter(
       (fave) => fave.id_entry != product.id_entry
     );
-    setFavourites(newFavourites);
+    
+    dispatch(setFavourites(newFavourites))
+    //setFavourites(newFavourites);
   };
 
   //on any change in favourites state, update local storage
   useEffect(() => {
-    setLocal(user.email, favourites);
-    const exist = favourites.some((fave) => fave.id_entry == product.id_entry);
+   
+    setLocal(favouritesArray);//user.email, 
+    
+    const exist = favouritesArray.some((fave) => fave.id_entry == product.id_entry);
 
     setInFave(exist);
-  }, [favourites]);
+  }, [favouritesArray]);
 
   return (
     <>

@@ -2,9 +2,13 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useDispatch, useSelector } from "react-redux";
-import { getProducts } from "../../products/store/slice/products/thunk";
+import { getProducts } from "../../store/slice/products/thunk";
 import { ProductCards } from "../../products/components/ProductCards";
 
+/**
+ * function that retrieves all products associated to one user, and returns jsx and components displaying these products
+ * @returns jsx and components
+ */
 export const UserProductsPage = () => {
   //get user to define user email
   const { user } = useAuth0();
@@ -13,7 +17,7 @@ export const UserProductsPage = () => {
   const { ok, page, products, isLoading, total_pages, error } = useSelector(
     (state) => state.products
   );
-
+console.log(total_pages)
   //define variables for fetch and fetch url
   const limit = import.meta.env.VITE_LIMIT;
   const method = "GET";
@@ -42,7 +46,9 @@ export const UserProductsPage = () => {
         <h1 className="uppercase text-center tracking-widest text-2xl md:text-3xl">
           Your items
         </h1>
-        <p className="h-10"> You have no items</p>
+        <p className="tracking-widest text-burgundy text-base font-light my-7">
+          You have no items
+        </p>
       </div>
     );
   }

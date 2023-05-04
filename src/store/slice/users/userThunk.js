@@ -1,9 +1,16 @@
-import { setProducts, startLoadingProducts } from "./productsSlice"
+import { setUsers, startLoadingUsers } from "./userSlice"
 
-export const getProducts = (url, method, body) => {
+
+/**
+ * function that retrieves data from apis via fetch, then dispatches data to slice and reducers
+ * @param {String} url url according to the endpoint that will be called
+ * @param {String} method method required for endpoint 
+ * @param {Object} [body] body of fetch providing data to endpoint
+ */
+export const getUsers = (url, method, body) => {
 
     return async (dispatch, getState) => {
-        dispatch(startLoadingProducts())
+        dispatch(startLoadingUsers())
 
         //call fetch
         let data;
@@ -39,7 +46,7 @@ export const getProducts = (url, method, body) => {
             return error
         }
 
-        dispatch(setProducts({ page: data.page, ok: data.ok, products: data.data, total_pages: data.total_pages, error: data.msg }))
+        dispatch(setUsers({ page: data.page, ok: data.ok, users: data.data, total_pages: data.total_pages, error: data.msg }))
     }
 
 

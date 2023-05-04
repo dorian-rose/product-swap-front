@@ -2,13 +2,13 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getProducts } from "../../store/slice/products/thunk";
-import { DeleteButton } from "../components/DeleteButton";
+import { AdminDeleteButton } from "../components/AdminDeleteButton";
 
 /**
  * Function that collects product id from params,returns delete button component and jsx and sends id delete component
  * @returns jsx
  */
-export const DeleteProductPage = () => {
+export const AdminDeletePage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -26,25 +26,26 @@ export const DeleteProductPage = () => {
     dispatch(getProducts(url, method));
   }, []);
 
-  return (
-    <div className="txt-cntr">
-      {!products || products.length == 0 ? (
-        <p className="text-turquoise tracking-widest text-base md:text-lg font-light mt-7">Item successfully removed!</p>
-      ) : (
-        <>
-          <p className="text-burgundy tracking-widest text-base md:text-lg font-light mt-7">Are you sure you want to delete item?</p>
-          <DeleteButton id_entry={id} />
-        </>
-      )}
+  return (<>   
+   {isLoading ? (
+          <img src="https://i.gifer.com/ZKZg.gif" alt="loading gif" />
+        ) : (
+          <>
+          <p className="text-burgundy tracking-widest text-base md:text-lg font-light mt-7">
+            Are you sure you want to delete item?
+            </p>
+          <AdminDeleteButton id_entry={id} />
+          </>
+        )
+      }
 
       <button
        className="text-center border rounded-md border-turquoise m-5  px-5 py-1  hover:bg-turquoise hover:text-white"
-        onClick={() => navigate(-2)}
+        onClick={() => navigate("/admin/products")}
       >
         Back
-      </button>
-    </div>
-  );
+      </button> 
+    </>);
 };
 
 

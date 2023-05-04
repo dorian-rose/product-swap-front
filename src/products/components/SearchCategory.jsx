@@ -7,14 +7,22 @@ import { useState } from "react";
 
 /**
  * function that returns jsx of form, collects search term from form input and dispatches search to search reducer . If receives category, searches only within category
- * @param {Object} [param0] deconstruct to get => category in which to search (optional)
+ * @param {Object} param0 deconstruct to get => category in which to search (optional)
  * @returns jsx
  */
 export const Search = ({ category }) => {
-  const [productErrors, setProductErrors] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  //usestate to configure error messages
+  const [productErrors, setProductErrors] = useState(false);
+
+  //collect products from state
+  const { ok, page, products, isLoading, total_pages, error } = useSelector(
+    (state) => state.products
+  );
+
+  //
   const {
     register,
     formState: { errors },

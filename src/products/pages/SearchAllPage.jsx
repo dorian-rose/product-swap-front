@@ -3,14 +3,21 @@ import { ProductCards } from "../components/ProductCards";
 import { useNavigate } from "react-router-dom";
 import { Search } from "../components/Search";
 
+/**
+ *function that retrieves product data from search reducer, and returns data dispayed in jsx
+ * @returns jsx
+ */
 export const SearchAllPage = () => {
   const navigate = useNavigate();
-  //get search info
+  //get search info from search reducer
   const { search, category } = useSelector((state) => state.searchProducts);
   //collect product data from state
   const { ok, page, products, isLoading, total_pages } = useSelector(
     (state) => state.products
   );
+
+
+  
 
   if (!products || products.length == 0) {
     return (
