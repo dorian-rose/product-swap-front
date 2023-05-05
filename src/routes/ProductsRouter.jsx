@@ -8,8 +8,11 @@ import {
   ElectronicsPage,
   DetailPage,
   SearchAllPage,
+  
 } from "../products/pages/index";
+import { CollectDataPage } from "../auth/pages/CollectDataPage";
 import { NavBar } from "../ui/NavBar";
+
 
 export const ProductsRouter = () => {
   return (
@@ -28,6 +31,7 @@ export const ProductsRouter = () => {
       <Route path="/electronics" element={<ElectronicsPage />} />
       <Route path="/view/:id" element={<DetailPage />} />
       <Route path="/search" element={<SearchAllPage />} />
+      
       <Route path="/*" element={<Navigate to={"/"} />} />
     </Routes>
     </main>

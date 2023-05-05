@@ -6,6 +6,7 @@ module.exports = {
       colors: {
         'turquoise': '#315b61',
         'burgundy': '#781313'
+
       }
     },
   },

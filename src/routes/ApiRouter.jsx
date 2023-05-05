@@ -5,8 +5,10 @@ import {
   DeleteProductPage,
   UpdateProductPage,
   FavouritesPage,
+  SendMailPage
 } from "../userFunctions/pages/index";
 import { NavBar } from "../ui/NavBar";
+
 
 
 export const ApiRouter = () => {
@@ -23,6 +25,7 @@ export const ApiRouter = () => {
         <Route path="delete/:id" element={<DeleteProductPage />} />
         <Route path="update/:id" element={<UpdateProductPage />} />
         <Route path="favourites" element={<FavouritesPage />} />
+         <Route path="/send/:id" element={<SendMailPage />} />
         <Route path="/*" element={<Navigate to={"/"} />} />
       </Routes>
       </main>

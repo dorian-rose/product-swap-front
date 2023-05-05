@@ -16,7 +16,7 @@ export const FavouriteButton = ({ product }) => {
    const {  favouritesArray } = useSelector(
     (state) => state.favourites
   );
-console.log(favouritesArray)
+
   //const [favourites, setFavourites] = useState(getLocal(user.email));
  const dispatch = useDispatch();
   //onclick favourite button, add to favourites state

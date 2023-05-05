@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { dataFetch } from "../../helpers/fetch"
+import { dataFetch } from "../helpers/fetch"
 
 export const useFetch = (url, method, body) => {
 

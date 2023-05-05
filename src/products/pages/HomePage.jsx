@@ -5,7 +5,6 @@ import { LoginButton } from "../../auth/components/LoginButton";
 export const HomePage = () => {
   const { user, isAuthenticated, app_metadata } = useAuth0();
 
-  console.log(user);
   return (
     <>
       <section className="mg-md">

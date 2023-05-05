@@ -1,7 +1,7 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import { ProductsRouter } from "./ProductsRouter";
-import { AuthRouter } from "./AuthRouter";
+
 import { ApiRouter } from "./ApiRouter";
 import { AdminRouter } from "./AdminRouter";
 import { HomePage } from "../products/pages";

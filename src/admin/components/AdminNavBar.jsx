@@ -1,4 +1,4 @@
-import { Search } from "../../products/components/Search";
+import { AdminSearch } from "./AdminSearch";
 import { Hamburger } from "../../ui/components/Hamburger";
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
@@ -18,7 +18,7 @@ export const AdminNavBar = () => {
   return (
     <nav className="mb-10 border-b pb-5 md:pb-0">
       <div className="grid grid-flow-col auto-cols-auto pt-4 m-5  md:hidden">
-        <Search />
+        <AdminSearch />
         {/* {isAuthenticated ? <LogoutButton /> : <LoginButton />} */}
         <Hamburger
           changePosition={changePosition}
@@ -66,7 +66,7 @@ export const AdminNavBar = () => {
           </li>
         )}
         <li className="py-1 md:py-0 hidden md:inline">
-          <Search />
+          <AdminSearch />
         </li>
         <li className="py-1 md:py-0 md:ms-2">
         <LogoutButton /> 

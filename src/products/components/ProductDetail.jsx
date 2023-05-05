@@ -2,6 +2,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import { FavouriteButton } from "./FavouriteButton";
 import { InterestedButton } from "./InterestedButton";
+import { ReserveButton } from "./ReserveButton";
+
 
 /**
  * function that receives product data and returns jsx displaying data
@@ -12,9 +14,10 @@ export const ProductDetail = ({ product }) => {
   //navigate to redirect, user to decide view (buttons) displayed
   const navigate = useNavigate();
   const { user, isAuthenticated } = useAuth0();
-console.log("user", user.email, product.email)
+
   return (
     <>
+    
       <section className="shadow-lg max-w-4xl mx-auto  grid md:grid-cols-2  justify-between">
         <div className="">
           <img
@@ -37,7 +40,16 @@ console.log("user", user.email, product.email)
           <div className="consumer-buttons m-5 md:m-10">
             {!user && <InterestedButton />}
             {isAuthenticated && user.email != product.email && (
-              <FavouriteButton product={product} />
+             <div className="flex flex-col">
+             <FavouriteButton product={product} />
+             <ReserveButton product={product} user={user}/>
+              <button
+        className="w-fit mb-4 mx-1 border border-turquoise hover:bg-turquoise hover:text-white rounded-md px-2 shadow-lg"
+        onClick={() => navigate(`/api/send/${product.id_entry}`)}
+      >
+       Contact poster
+      </button>
+              </div>
             )}
           </div>
         </div>

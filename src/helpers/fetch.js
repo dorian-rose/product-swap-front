@@ -2,13 +2,13 @@
 
 export const dataFetch = async (url, method, body) => {
     let data;
-
+    console.log(body)
     let options = {};
 
     const newData = { ...body } //from body
-
+    console.log(newData)
     try {
-        if (method == "DELETE") {
+        if (method == "DELETE" || method == "POST" || method == "PUT") {
 
             options = {
                 method: method,
@@ -18,13 +18,7 @@ export const dataFetch = async (url, method, body) => {
                 }
             }
         }
-        if (method == "PUT" || method == "POST") {
 
-            options = {
-                method: method,
-                body: body
-            }
-        }
         const response = await fetch(url, options);
 
         data = await response.json();

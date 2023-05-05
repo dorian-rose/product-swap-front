@@ -31,8 +31,14 @@ console.log(ok)
       {isLoading ? (
           <img src="https://i.gifer.com/ZKZg.gif" alt="loading gif" />
         ) :  (
-<div class='overflow-x'>
-    <table className="table-auto overflow-scroll my-5 md:my-10 w-full border-collapse bg-white text-left text-base font-thin text-gray-500">
+ 
+<div >
+  <button 
+  className="font-light mx-2 mt-5 underline  hover:bg-turquoise hover:text-white  px-2 rounded-md"
+  onClick={() =>
+              dispatch(getProducts(url + 1, method))
+            }>View all</button> 
+    <table className="table-auto overflow-scroll mt-4 mb-5  md:mb-10 w-full border-collapse bg-white text-left text-base font-thin text-gray-500">
  <thead className="bg-gray-50">
   <tr>
     <th scope="col" className="px-6 py-4 font-medium text-gray-900">Product</th>

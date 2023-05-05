@@ -9,7 +9,7 @@ import { InterestedButton } from "./InterestedButton";
  * @returns jsx
  */
 export const ProductCards = (props) => {
-  const { user } = useAuth0();
+  const { user,isAuthenticated } = useAuth0();
 
   //deconstruct variables from object to retrieve data of product
   const { title, description, formatdate, image, id_entry, email } = props;
@@ -35,6 +35,7 @@ export const ProductCards = (props) => {
       </h3>
       <h4 className="mx-5 capitalize font-light">{description}</h4>
       <div className="flex justify-start m-5">
+        
         {user?.email && user?.email != email && (
           <FavouriteButton product={props} />
         )}
