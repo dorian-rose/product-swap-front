@@ -6,7 +6,6 @@ import { DeleteButton } from "../components/DeleteButton";
 
 /**
  * Function that collects product id from params,returns delete button component and jsx and sends id delete component
- * @returns jsx
  */
 export const DeleteProductPage = () => {
   const { id } = useParams();
@@ -29,16 +28,20 @@ export const DeleteProductPage = () => {
   return (
     <div className="txt-cntr">
       {!products || products.length == 0 ? (
-        <p className="text-turquoise tracking-widest text-base md:text-lg font-light mt-7">Item successfully removed!</p>
+        <p className="text-turquoise tracking-widest text-base md:text-lg font-light mt-7">
+          Item successfully removed!
+        </p>
       ) : (
         <>
-          <p className="text-burgundy tracking-widest text-base md:text-lg font-light mt-7">Are you sure you want to delete item?</p>
+          <p className="text-burgundy tracking-widest text-base md:text-lg font-light mt-7">
+            Are you sure you want to delete item?
+          </p>
           <DeleteButton id_entry={id} />
         </>
       )}
 
       <button
-       className="text-center border rounded-md border-turquoise m-5  px-5 py-1  hover:bg-turquoise hover:text-white"
+        className="text-center border rounded-md border-turquoise m-5  px-5 py-1  hover:bg-turquoise hover:text-white"
         onClick={() => navigate(-2)}
       >
         Back
@@ -46,6 +49,3 @@ export const DeleteProductPage = () => {
     </div>
   );
 };
-
-
-         

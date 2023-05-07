@@ -3,7 +3,6 @@ import { AddForm } from "../components/AddForm";
 
 /**
  * function that returns component
- * @returns component
  */
 export const AddProductPage = () => {
   return (

@@ -5,11 +5,11 @@ import { getProducts } from "../../store/slice/products/thunk";
 import { useEffect } from "react";
 import { SendMailForm } from "../components/SendMailForm";
 
-
-
+/**
+ * function that collects data of one product from product state, and sends it to a component that will call a send mail function regarding this product.
+ */
 export const SendMailPage = () => {
-
-const { id } = useParams();
+  const { id } = useParams();
   //define url and method required for fetch
   const url = `${import.meta.env.VITE_PRODUCT_URL}entry?id=${id}`;
   const method = "GET";
@@ -23,16 +23,15 @@ const { id } = useParams();
     dispatch(getProducts(url, method));
   }, []);
 
-
   return (
-    <>  {isLoading &&  <img src="https://i.gifer.com/ZKZg.gif" alt="loading gif" /> } 
-        { products.map((product) => (
-            <SendMailForm key={product.id_entry} {...product} />
-          ))}
-  </>
-   
-  )
-}
-
-
-
+    <>
+      {" "}
+      {isLoading && (
+        <img src="https://i.gifer.com/ZKZg.gif" alt="loading gif" />
+      )}
+      {products.map((product) => (
+        <SendMailForm key={product.id_entry} {...product} />
+      ))}
+    </>
+  );
+};

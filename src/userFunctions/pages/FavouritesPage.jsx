@@ -2,19 +2,16 @@ import { useState, useEffect } from "react";
 import { ProductCards } from "../../products/components/ProductCards";
 import { setLocal, getLocal } from "../../products/helpers/localStorage";
 import { useAuth0 } from "@auth0/auth0-react";
-import { setFavourites } from "../../store/slice/favourites/faveSlice"
+import { setFavourites } from "../../store/slice/favourites/faveSlice";
 import { useDispatch, useSelector } from "react-redux";
 /**
  * function that collects user from auth and favourites from local and returns component, passing it these variables as props
- * @returns component
  */
 export const FavouritesPage = () => {
   const { user } = useAuth0();
   //const [favourites, setFavourites]=useState(getLocal(user.email))
- //collect data from state
-  const {favouritesArray} = useSelector(
-    (state) => state.favourites
-  );
+  //collect data from state
+  const { favouritesArray } = useSelector((state) => state.favourites);
 
   return (
     <section>
