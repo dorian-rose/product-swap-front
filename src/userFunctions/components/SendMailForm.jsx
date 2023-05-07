@@ -4,6 +4,11 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
+/**
+ *
+ * @param {Object} props properties are: title, image, email of product about which mail is being sent.
+ * @returns
+ */
 export const SendMailForm = (props) => {
   //to manage errors, consult result:
   const [messageSuccess, setMessageSuccess] = useState(false);
@@ -22,6 +27,10 @@ export const SendMailForm = (props) => {
 
   const { title, image, email } = props;
 
+  /**
+   * function that sends POST request fetch to back end to send mail to product owner
+   * @param {Object} data properties: message (to be sent to product owner), includeSender (true/false whether to include copy of mail to sender)
+   */
   const sendEmail = async (data) => {
     setIsLoading(true);
     const { message, includeSender } = data;

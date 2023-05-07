@@ -6,7 +6,6 @@ import { ProductDetail } from "../components/ProductDetail";
 
 /**
  * function that retrieves data (product id) from params and uses this to dispatch to fetch to retrieve data, displays data in returned jsx
- * @returns jsx and component
  */
 export const DetailPage = () => {
   //get product id
@@ -24,14 +23,15 @@ export const DetailPage = () => {
     dispatch(getProducts(url, method));
   }, []);
 
-console.log(products)
   return (
     <>
-      {isLoading ? (<h2>Loading...</h2>):(
-
-      products.map((product) => (
-        <ProductDetail key={product.id_entry} product={product} />
-      )))}
+      {isLoading ? (
+        <h2>Loading...</h2>
+      ) : (
+        products.map((product) => (
+          <ProductDetail key={product.id_entry} product={product} />
+        ))
+      )}
     </>
   );
 };
