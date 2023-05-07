@@ -39,7 +39,9 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-plugin-react", "virtual:8d78171dce686f32460a75e84288afb65dd43415a2474151281c108ef6dca0d1ad5145be4134f955512e7d84cf407bd1ec944e79afc7a5e486f221b079f8ad4c#npm:7.32.2"],\
             ["eslint-plugin-react-hooks", "virtual:8d78171dce686f32460a75e84288afb65dd43415a2474151281c108ef6dca0d1ad5145be4134f955512e7d84cf407bd1ec944e79afc7a5e486f221b079f8ad4c#npm:4.6.0"],\
             ["eslint-plugin-react-refresh", "virtual:8d78171dce686f32460a75e84288afb65dd43415a2474151281c108ef6dca0d1ad5145be4134f955512e7d84cf407bd1ec944e79afc7a5e486f221b079f8ad4c#npm:0.3.5"],\
+            ["jsconfig.json", "npm:2.3.3"],\
             ["jsdoc", "npm:4.0.2"],\
+            ["nodemailer", "npm:6.9.1"],\
             ["postcss", "npm:8.4.23"],\
             ["react", "npm:18.2.0"],\
             ["react-dom", "virtual:8d78171dce686f32460a75e84288afb65dd43415a2474151281c108ef6dca0d1ad5145be4134f955512e7d84cf407bd1ec944e79afc7a5e486f221b079f8ad4c#npm:18.2.0"],\
@@ -1878,6 +1880,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["deepmerge", [\
+        ["npm:4.3.1", {\
+          "packageLocation": "./.yarn/cache/deepmerge-npm-4.3.1-4f751a0844-2024c6a980.zip/node_modules/deepmerge/",\
+          "packageDependencies": [\
+            ["deepmerge", "npm:4.3.1"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["define-properties", [\
         ["npm:1.2.0", {\
           "packageLocation": "./.yarn/cache/define-properties-npm-1.2.0-3547cd0fd2-e60aee6a19.zip/node_modules/define-properties/",\
@@ -3617,6 +3628,18 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["jsconfig.json", [\
+        ["npm:2.3.3", {\
+          "packageLocation": "./.yarn/cache/jsconfig.json-npm-2.3.3-721eddd1d0-3572ffa122.zip/node_modules/jsconfig.json/",\
+          "packageDependencies": [\
+            ["jsconfig.json", "npm:2.3.3"],\
+            ["deepmerge", "npm:4.3.1"],\
+            ["picocolors", "npm:1.0.0"],\
+            ["yargs", "npm:17.7.2"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["jsdoc", [\
         ["npm:4.0.2", {\
           "packageLocation": "./.yarn/cache/jsdoc-npm-4.0.2-9d339d556b-04bf5ab005.zip/node_modules/jsdoc/",\
@@ -4746,6 +4769,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["nodemailer", [\
+        ["npm:6.9.1", {\
+          "packageLocation": "./.yarn/cache/nodemailer-npm-6.9.1-5159f56f86-b1b9670afc.zip/node_modules/nodemailer/",\
+          "packageDependencies": [\
+            ["nodemailer", "npm:6.9.1"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["nopt", [\
         ["npm:6.0.0", {\
           "packageLocation": "./.yarn/cache/nopt-npm-6.0.0-5ea8050815-82149371f8.zip/node_modules/nopt/",\
@@ -5292,7 +5324,9 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-plugin-react", "virtual:8d78171dce686f32460a75e84288afb65dd43415a2474151281c108ef6dca0d1ad5145be4134f955512e7d84cf407bd1ec944e79afc7a5e486f221b079f8ad4c#npm:7.32.2"],\
             ["eslint-plugin-react-hooks", "virtual:8d78171dce686f32460a75e84288afb65dd43415a2474151281c108ef6dca0d1ad5145be4134f955512e7d84cf407bd1ec944e79afc7a5e486f221b079f8ad4c#npm:4.6.0"],\
             ["eslint-plugin-react-refresh", "virtual:8d78171dce686f32460a75e84288afb65dd43415a2474151281c108ef6dca0d1ad5145be4134f955512e7d84cf407bd1ec944e79afc7a5e486f221b079f8ad4c#npm:0.3.5"],\
+            ["jsconfig.json", "npm:2.3.3"],\
             ["jsdoc", "npm:4.0.2"],\
+            ["nodemailer", "npm:6.9.1"],\
             ["postcss", "npm:8.4.23"],\
             ["react", "npm:18.2.0"],\
             ["react-dom", "virtual:8d78171dce686f32460a75e84288afb65dd43415a2474151281c108ef6dca0d1ad5145be4134f955512e7d84cf407bd1ec944e79afc7a5e486f221b079f8ad4c#npm:18.2.0"],\
@@ -6940,6 +6974,20 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/yargs-npm-17.7.1-0758ec0e50-3d8a43c336.zip/node_modules/yargs/",\
           "packageDependencies": [\
             ["yargs", "npm:17.7.1"],\
+            ["cliui", "npm:8.0.1"],\
+            ["escalade", "npm:3.1.1"],\
+            ["get-caller-file", "npm:2.0.5"],\
+            ["require-directory", "npm:2.1.1"],\
+            ["string-width", "npm:4.2.3"],\
+            ["y18n", "npm:5.0.8"],\
+            ["yargs-parser", "npm:21.1.1"]\
+          ],\
+          "linkType": "HARD"\
+        }],\
+        ["npm:17.7.2", {\
+          "packageLocation": "./.yarn/cache/yargs-npm-17.7.2-80b62638e1-73b572e863.zip/node_modules/yargs/",\
+          "packageDependencies": [\
+            ["yargs", "npm:17.7.2"],\
             ["cliui", "npm:8.0.1"],\
             ["escalade", "npm:3.1.1"],\
             ["get-caller-file", "npm:2.0.5"],\

@@ -1,8 +1,11 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { UpdateForm } from "../components/UpdateForm";
 import { useSelector, useDispatch } from "react-redux";
-import { getProducts } from "../../products/store/slice/products/thunk";
+import { getProducts } from "../../store/slice/products/thunk";
 
+/**
+ *function that retrieves details of a product and returns a component, sending it the product details.
+ */
 export const UpdateProductPage = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
@@ -13,7 +16,6 @@ export const UpdateProductPage = () => {
   if (!products || products.length == 0) {
     const url = `${import.meta.env.VITE_PRODUCT_URL}entry?id=${id}`;
     const method = "GET";
-
     dispatch(getProducts(url, method));
   }
 

@@ -1,0 +1,6 @@
+export * from './DashboardPage'
+export * from './AdminProductPage'
+export * from './AdminDetailPage'
+export * from './AdminDeletePage'
+export * from './AdminUserPage'
+export * from './AdminUserDetailPage'

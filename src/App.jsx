@@ -1,15 +1,19 @@
 import { AppRouter } from "./routes/AppRouter";
 import { NavBar } from "./ui/NavBar";
+import { CategoryBar } from "./ui/CategoryBar";
 
 function App() {
   return (
     <>
-      <header className="bg-md pd-sm txt-cntr">Header</header>
-      <NavBar />
-      <main className="mx-20">
+      <header className="bg-slate-100 p-10 text-center border-b border-black">
+        Header
+      </header>
+      {/* <main className="mx-10 md:mx-20"> */}
         <AppRouter />
-      </main>
-      <footer className="bg-md pd-sm txt-cntr">Footer </footer>
+      {/* </main> */}
+      <footer className="bg-slate-100 p-10 text-center border-t border-black">
+        Footer{" "}
+      </footer>
     </>
   );
 }

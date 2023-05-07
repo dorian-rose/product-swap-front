@@ -1,70 +1,42 @@
-import { NavLink } from "react-router-dom";
-import { useAuth0 } from "@auth0/auth0-react";
-import { LogoutButton } from "../auth/components/LogoutButton";
-import { LoginButton } from "../auth/components/LoginButton";
+import { Search } from "../products/components/Search";
+import { CategoryBar } from "./CategoryBar";
+import { UserBar } from "./UserBar";
+import { Hamburger } from "./components/Hamburger";
+import { useState } from "react";
 
 export const NavBar = () => {
-  const { user, isAuthenticated, isLoading } = useAuth0();
+  const [menuPosition, setMenuPosition] = useState("hidden");
+  const changePosition = () => {
+    if (menuPosition == "block") {
+      setMenuPosition("hidden");
+    } else {
+      setMenuPosition("block");
+    }
+  };
   return (
-    <nav className="bg-dark">
-      <ul className="flex-row jst-cntr">
-        <li className="mg-md">
-          <NavLink
-            to="/"
-            className={({ isActive }) =>
-              `nav-link ${isActive ? "isActive" : ""} `
-            }
-          >
-            Home
-          </NavLink>
-        </li>
-        {isAuthenticated && (
-          <li className="mg-md">
-            <NavLink
-              to="/api/add"
-              className={({ isActive }) =>
-                `nav-link ${isActive ? "isActive" : ""} `
-              }
-            >
-              List an item
-            </NavLink>
-          </li>
-        )}
-        {isAuthenticated && (
-          <li className="mg-md">
-            <NavLink
-              to="/api/user"
-              className={({ isActive }) =>
-                `nav-link ${isActive ? "isActive" : ""} `
-              }
-            >
-              Manage my items
-            </NavLink>
-          </li>
-        )}
-        {isAuthenticated && (
-          <li className="mg-md">
-            <NavLink
-              to="/api/favourites"
-              className={({ isActive }) =>
-                `nav-link ${isActive ? "isActive" : ""} `
-              }
-            >
-              View Favourites
-            </NavLink>
-          </li>
-        )}
-
-        {isAuthenticated ? (
-          <li>
-            <LogoutButton />
-          </li>
-        ) : (
-          <li>
-            <LoginButton />
-          </li>
-        )}
-      </ul>
+    <nav className="mb-10 border-b pb-5 md:pb-0">
+      <div className="w-12">
+        <img
+          className="w-12 start-4 absolute top-32 md:top-28"
+          src="../src/assets/tree_logo.jpg"
+          alt=""
+        />{" "}
+      </div>
+      <p className="absolute hidden lg:block start-28 top-28 logo-text text-3xl text-turquoise">
+        Gumtree
+      </p>
+      <div className="ms-24 flex justify-end pt-4 m-5  md:hidden">
+        <Search />
+        {/* {isAuthenticated ? <LogoutButton /> : <LoginButton />} */}
+        <Hamburger
+          changePosition={changePosition}
+          menuPosition={menuPosition}
+        />
+      </div>
+      <div className={`${menuPosition} md:block`}>
+        <UserBar />
+        <CategoryBar />
+      </div>
     </nav>
   );
 };

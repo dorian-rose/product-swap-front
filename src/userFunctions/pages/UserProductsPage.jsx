@@ -2,15 +2,18 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useDispatch, useSelector } from "react-redux";
-import { getProducts } from "../../products/store/slice/products/thunk";
+import { getProducts } from "../../store/slice/products/thunk";
 import { ProductCards } from "../../products/components/ProductCards";
 
+/**
+ * function that retrieves all products associated to one user, and returns jsx and components displaying these products
+ */
 export const UserProductsPage = () => {
   //get user to define user email
   const { user } = useAuth0();
-  console.log(user);
+
   //get data from  state
-  const { ok, page, products, isLoading, total_pages } = useSelector(
+  const { ok, page, products, isLoading, total_pages, error } = useSelector(
     (state) => state.products
   );
 
@@ -20,32 +23,49 @@ export const UserProductsPage = () => {
   const url = `${import.meta.env.VITE_PRODUCT_URL}entries?user=${
     user.email
   }&limit=${limit}&page=`; //url will be complete with page number when calling
-  console.log(url + 1);
-  console.log(products, ok, page); //manage errors
 
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getProducts(url + 1, method));
   }, []);
 
-  if (!products || products.length == 0) {
+  if ((ok && !products) || (ok && products.length == 0)) {
+    dispatch(getProducts(url + 1, method));
+  }
+  //products! || products.length == 0
+  if (!ok) {
     return (
       <div>
-        <h1>Your items</h1>
-        <p> You have no items</p>
-        <Link to="/api/add" className="mg-lg sd-pd-sm bg-dark">
+        <Link
+          to="/api/add"
+          className="m-5 border border-turquoise hover:bg-turquoise hover:text-white rounded-md px-2 shadow-lg"
+        >
           List an item
         </Link>
+        <h1 className="uppercase text-center tracking-widest text-2xl md:text-3xl">
+          Your items
+        </h1>
+        <p className="tracking-widest text-burgundy text-base font-light my-7">
+          You have no items
+        </p>
       </div>
     );
   }
   return (
     <div>
-      <h1 className="mg-md">Your items</h1>
-      <h2 className="mg-md">View, edit or delete your items</h2>
-      <Link to="/api/add" className="mg-lg sd-pd-sm bg-dark">
+      <Link
+        to="/api/add"
+        className="m-5 font-light border border-turquoise hover:bg-turquoise hover:text-white rounded-md px-2 shadow-lg"
+      >
         List an item
       </Link>
+      <h1 className="uppercase text-center tracking-widest text-2xl md:text-3xl">
+        Your items
+      </h1>
+      <h2 className="tracking-widest text-base md:text-lg font-light mt-7 mx-5">
+        View, edit or delete your items
+      </h2>
+
       <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         {isLoading ? (
           <img src="https://i.gifer.com/ZKZg.gif" alt="loading gif" />
@@ -55,9 +75,9 @@ export const UserProductsPage = () => {
           ))
         )}
       </section>
-      <div className="mg-md txt-cntr">
+      <div className="text-center mb-10">
         <button
-          className="mg-sm"
+          className="font-light m-2 border border-turquoise disabled:hover:bg-white disabled:hover:text-slate-600 disabled:shadow-none disabled:border-slate-200 hover:bg-turquoise hover:text-white rounded-md px-2 shadow-lg"
           disabled={isLoading || (page <= 1 && true)}
           onClick={() =>
             dispatch(getProducts(url + (parseInt(page) - 1), method))
@@ -65,9 +85,11 @@ export const UserProductsPage = () => {
         >
           Previous
         </button>
-        <button className="mg-sm">Page {page}</button>
+        <button className="font-light m-2 border border-turquoise hover:bg-turquoise hover:text-white rounded-md px-2 shadow-lg">
+          Page {page}
+        </button>
         <button
-          className="mg-sm"
+          className="font-light m-2 border border-turquoise disabled:hover:bg-white disabled:hover:text-slate-600 disabled:shadow-none disabled:border-slate-200 hover:bg-turquoise hover:text-white rounded-md px-2 shadow-lg"
           disabled={isLoading || (page >= total_pages && true)}
           onClick={() =>
             dispatch(getProducts(url + (parseInt(page) + 1), method))
