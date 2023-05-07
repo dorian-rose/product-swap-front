@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 
 export const CategoryBar = () => {
   return (
-    <div className=" flex flex-col md:flex-row bg-slate-300 ">
+    <div className=" flex flex-col md:flex-row bg-slate-100 ">
       <ul className="md:p-4  flex flex-col md:flex-row text-end md:justify-between  mx-10">
         <li className="py-1 md:py-0 mt-2  md:hidden  ">
           <p>Categories</p>

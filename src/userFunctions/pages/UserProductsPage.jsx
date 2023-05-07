@@ -7,7 +7,6 @@ import { ProductCards } from "../../products/components/ProductCards";
 
 /**
  * function that retrieves all products associated to one user, and returns jsx and components displaying these products
- * @returns jsx and components
  */
 export const UserProductsPage = () => {
   //get user to define user email
@@ -17,7 +16,7 @@ export const UserProductsPage = () => {
   const { ok, page, products, isLoading, total_pages, error } = useSelector(
     (state) => state.products
   );
-console.log(total_pages)
+
   //define variables for fetch and fetch url
   const limit = import.meta.env.VITE_LIMIT;
   const method = "GET";
@@ -56,7 +55,7 @@ console.log(total_pages)
     <div>
       <Link
         to="/api/add"
-        className="m-5 border border-turquoise hover:bg-turquoise hover:text-white rounded-md px-2 shadow-lg"
+        className="m-5 font-light border border-turquoise hover:bg-turquoise hover:text-white rounded-md px-2 shadow-lg"
       >
         List an item
       </Link>

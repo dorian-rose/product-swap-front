@@ -12,7 +12,7 @@ export const faveSlice = createSlice({
     },
     reducers: {
         setFavourites: (state, action) => {
-            console.log('setFavourites action:', action.payload);
+
             state.favouritesArray = action.payload
         }
     }

@@ -1,10 +1,13 @@
-import { Search } from "../../products/components/Search";
+import { AdminSearch } from "./AdminSearch";
 import { Hamburger } from "../../ui/components/Hamburger";
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
-import { LogoutButton } from "../../auth/components/LogoutButton";
+import { NavLink, Link } from "react-router-dom";
+import { LogoutButton } from "../../ui/components/LogoutButton";
 import { useAuth0 } from "@auth0/auth0-react";
 
+/**
+ * returns ejs of nav bar, directing via NavLinks to other admin locations
+ */
 export const AdminNavBar = () => {
   const { isAuthenticated } = useAuth0();
   const [menuPosition, setMenuPosition] = useState("hidden");
@@ -17,8 +20,22 @@ export const AdminNavBar = () => {
   };
   return (
     <nav className="mb-10 border-b pb-5 md:pb-0">
-      <div className="grid grid-flow-col auto-cols-auto pt-4 m-5  md:hidden">
-        <Search />
+      <div className="w-12">
+        <img
+          className="w-12 start-4 absolute top-32 md:top-28"
+          src="../src/assets/tree_logo.jpg"
+          alt=""
+        />{" "}
+      </div>
+      <Link
+        className="absolute hidden md:block start-20 lg:start-28 top-28 logo-text text-3xl text-turquoise"
+        to="/"
+      >
+        Gumtree
+      </Link>
+
+      <div className="grid grid-flow-col auto-cols-auto pt-4 ms-24 my-5  md:hidden">
+        <AdminSearch />
         {/* {isAuthenticated ? <LogoutButton /> : <LoginButton />} */}
         <Hamburger
           changePosition={changePosition}
@@ -26,10 +43,7 @@ export const AdminNavBar = () => {
         />
       </div>
       <div className={`menu ${menuPosition} md:block md:border-b`}>
-       
-      <ul className="relative md:p-4  flex flex-col md:flex-row text-end md:justify-between  mx-10">
-        
-        
+        <ul className="relative md:p-4  flex flex-col md:flex-row text-end md:justify-end  mx-10">
           <li className="py-1 md:py-0">
             <NavLink
               to="/admin/dashboard"
@@ -37,43 +51,42 @@ export const AdminNavBar = () => {
                 `nav-link ${isActive ? "isActive" : ""} m-2 font-thin`
               }
             >
-            Home
+              Home
             </NavLink>
           </li>
-       
-        {isAuthenticated && (
-          <li className="py-1 md:py-0">
-            <NavLink
-              to="/admin/products"
-              className={({ isActive }) =>
-                `nav-link ${isActive ? "isActive" : ""} m-2 font-thin`
-              }
-            >
-             Products
-            </NavLink>
+
+          {isAuthenticated && (
+            <li className="py-1 md:py-0">
+              <NavLink
+                to="/admin/products"
+                className={({ isActive }) =>
+                  `nav-link ${isActive ? "isActive" : ""} m-2 font-thin`
+                }
+              >
+                Products
+              </NavLink>
+            </li>
+          )}
+          {isAuthenticated && (
+            <li className="py-1 md:py-0">
+              <NavLink
+                to="/admin/users"
+                className={({ isActive }) =>
+                  `nav-link ${isActive ? "isActive" : ""} m-2 font-thin`
+                }
+              >
+                Users
+              </NavLink>
+            </li>
+          )}
+          <li className="py-1 md:py-0 hidden md:inline">
+            <AdminSearch />
           </li>
-        )}
-        {isAuthenticated && (
-          <li className="py-1 md:py-0">
-            <NavLink
-              to="/api/favourites"
-              className={({ isActive }) =>
-                `nav-link ${isActive ? "isActive" : ""} m-2 font-thin`
-              }
-            >
-             Add link
-            </NavLink>
+          <li className="py-1 md:py-0 md:ms-2">
+            <LogoutButton />
           </li>
-        )}
-        <li className="py-1 md:py-0 hidden md:inline">
-          <Search />
-        </li>
-        <li className="py-1 md:py-0 md:ms-2">
-        <LogoutButton /> 
-        </li>
-      </ul>
-    </div>
-     
+        </ul>
+      </div>
     </nav>
   );
 };

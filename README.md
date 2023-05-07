@@ -1,30 +1,58 @@
 # Product swap
 
-Dependencies (and versions) used:
+## To start project:
 
+- Run 'yarn' to install all dependencies used (see note below)
+- Run 'yarn dev' to start
+- Configure environmental variables. Required variables can be found in .env.template file
+
+NOTE: versions of dependencies different to those used here may cause conflicts. See list below (and package.json file) for dependencies and versions:
+
+- "@auth0/auth0-react": "^2.0.2",
+- "@reduxjs/toolkit": "^1.9.5",
+- "documentation": "^14.0.1",
+- "jsdoc": "^4.0.2",
+- "nodemailer": "^6.9.1",
 - "react": "^18.2.0",
 - "react-dom": "^18.2.0",
-- "react-router-dom": "^6.10.0"
+- "react-hook-form": "^7.43.9",
+- "react-redux": "^8.0.5",
+- "react-router-dom": "^6.10.0",
+- "redux": "^4.2.1"
 
-(as per package.json)
+## Related documents
 
-To start project:
+API are used to send to and receive from data base. To read API documentation: https://documenter.getpostman.com/view/26092520/2s93eYTXQi
 
-- ready to start!
+To see open-source backend code: https://github.com/dorian-rose/product-swap-back
 
-Page structure: Pages that are accessible to unregistered users as well as registered users (users) and admin are structured through "product routers". While these pages are accessible to unregistered users, some views and functions are restricted to registered users.
-Pages that are only accessible to registered users and admin are contained in "api routers".
+Code is documented using JSDocs. To read documentation of code:
 
-ADMIN: pepe@correo.es
-Password: QueVivaPepe2023
+Deployed website can be viewed here:
 
-styles: <h2 className="tracking-widest text-base md:text-lg font-light mt-7">
+## Database
 
-  <h1 className="uppercase text-center tracking-widest text-2xl md:text-3xl">
+Postgres SQL Elephant database has been used. The following schema demonstrates the tables used and their relations.
 
-button:
-className="text-center border rounded-md border-black-600 mt-5 mx-auto px-5 py-1 block hover:bg-slate-50"
+<img src="src/assets/blog-project-schema.png" alt="relational diagram for sql database" style="display: block; margin: 0 auto"/>
 
-input: className="placeholder:font-thin focus:outline-none focus:border-turquoise focus:border-2 focus:border-solid rounded-md w-full"
+## Roles
 
-view button: <p className="m-3 border border-turquoise hover:bg-turquoise hover:text-white rounded-md px-2 shadow-lg">
+Website users have accessibility to different parts of the site, depending on the permissions of their role. Three roles are used:
+
+- 'Super' administrator
+- Registered, logged user
+- Non-registered user.
+
+The following diagram indicates accessibility and permissions of each role.
+
+<img src="src/assets/roles.png" alt="role permissions for site" style="display: block; margin: 0 auto"/>
+
+### Users
+
+Test user details are provided in order to explore app:
+
+- ADMIN: pepe@correo.es Pass: QueVivaPepe2023
+
+- User: jose@correo.es Pass: Abcd1234
+- User: ana@correo.es Pass: Abcd1234

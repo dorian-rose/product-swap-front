@@ -7,7 +7,6 @@ import { useState } from "react";
 
 /**
  * function that displays a form (jsx) - on receiving form inputs dispatches form input data to fetch/reducers
- * @returns jsx
  */
 export const AddForm = () => {
   const dispatch = useDispatch();
@@ -25,7 +24,10 @@ export const AddForm = () => {
     handleSubmit,
   } = useForm({ mode: "all" });
 
-  //const { body, setBody, handleChange } = useForm("");
+  /**
+   * function that collects inputs from forms and sends as data to fetch in POST request
+   * @param {Object} data properties: title, description, category, email, claimed -collected from form inputs
+   */
   const callDispatch = (data) => {
     //define body from formdata for fetch
     const { title, description, category, email, claimed } = data;

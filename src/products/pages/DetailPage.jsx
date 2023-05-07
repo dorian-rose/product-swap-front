@@ -24,13 +24,14 @@ export const DetailPage = () => {
     dispatch(getProducts(url, method));
   }, []);
 
+console.log(products)
   return (
     <>
-      {isLoading && <h2>Loading...</h2>}
+      {isLoading ? (<h2>Loading...</h2>):(
 
-      {products.map((product) => (
+      products.map((product) => (
         <ProductDetail key={product.id_entry} product={product} />
-      ))}
+      )))}
     </>
   );
 };

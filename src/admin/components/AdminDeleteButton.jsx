@@ -1,21 +1,14 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { getProducts } from "../../store/slice/products/thunk";
 import { useNavigate } from "react-router-dom";
-
-
 
 /**
  *function that receives id of a product dispatches via a DELETE fetch
  * @param {Object} param0 desconstructed to receive id_entry
- * @returns
  */
 export const AdminDeleteButton = ({ id_entry }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  //collect data from state
-  // const { ok, page, products, isLoading, total_pages } = useSelector(
-  //   (state) => state.products
-  // );
 
   //define body, method and url for fetch
   const body = { id_entry };
@@ -27,12 +20,13 @@ export const AdminDeleteButton = ({ id_entry }) => {
   const handleClick = (ev) => {
     ev.preventDefault();
     dispatch(getProducts(url, method, body)); //id as body
-    navigate("/admin/products")
+    navigate("/admin/products");
   };
   return (
-    <button 
-    className="text-center border rounded-md border-burgundy m-5 px-5 py-1  hover:bg-burgundy hover:text-white"
-     onClick={handleClick}>
+    <button
+      className="text-center border rounded-md border-burgundy m-5 px-5 py-1  hover:bg-burgundy hover:text-white"
+      onClick={handleClick}
+    >
       Delete
     </button>
   );

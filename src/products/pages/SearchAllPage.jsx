@@ -5,7 +5,6 @@ import { Search } from "../components/Search";
 
 /**
  *function that retrieves product data from search reducer, and returns data dispayed in jsx
- * @returns jsx
  */
 export const SearchAllPage = () => {
   const navigate = useNavigate();
@@ -15,9 +14,6 @@ export const SearchAllPage = () => {
   const { ok, page, products, isLoading, total_pages } = useSelector(
     (state) => state.products
   );
-
-
-  
 
   if (!products || products.length == 0) {
     return (

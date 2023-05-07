@@ -7,7 +7,6 @@ import { Search } from "../components/Search";
 /**
  * Function that dispatches, receives data and returns jsx presenting data
  * @param {Object} param0 category of product to search and display
- * @returns jsx
  */
 export const CategoryContainer = ({ category }) => {
   //collect data from state
@@ -30,7 +29,7 @@ export const CategoryContainer = ({ category }) => {
 
   return (
     <div>
-      <h1 className="uppercase text-center tracking-widest text-2xl md:text-3xl">
+      <h1 className="font-light uppercase text-center tracking-widest text-2xl md:text-3xl">
         {category}
       </h1>
       <Search category={category} />

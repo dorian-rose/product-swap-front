@@ -1,11 +1,12 @@
-import React from "react";
-
+/**
+ *
+ * @param {Object} param0 destructured: changePosition, menuPosition. ChangePosition is a function that changes value of menuPosition, which provides a class to conceal or reveal the menu.
+ * @returns jsx of "hamburger" button
+ */
 export const Hamburger = ({ changePosition, menuPosition }) => {
-  console.log(menuPosition);
-
   return (
     <>
-      <button className="text-end me-10" onClick={changePosition}>
+      <button className="text-end ms-3  me-7" onClick={changePosition}>
         {menuPosition == "block" ? (
           <p>X</p>
         ) : (
