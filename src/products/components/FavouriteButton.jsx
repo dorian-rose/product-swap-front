@@ -1,7 +1,7 @@
 import { getLocal, setLocal } from "../helpers/localStorage";
 import { useState, useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
-import { setFavourites } from "../../store/slice/favourites/faveSlice"
+import { setFavourites } from "../../store/slice/favourites/faveSlice";
 import { useDispatch, useSelector } from "react-redux";
 /**
  *
@@ -13,35 +13,38 @@ export const FavouriteButton = ({ product }) => {
   const [inFave, setInFave] = useState(false);
 
   //collect state
-   const {  favouritesArray } = useSelector(
-    (state) => state.favourites
-  );
+  const { favouritesArray } = useSelector((state) => state.favourites);
 
   //const [favourites, setFavourites] = useState(getLocal(user.email));
- const dispatch = useDispatch();
-  //onclick favourite button, add to favourites state
+  const dispatch = useDispatch();
+
+  /**
+   * on click of favourite button, add to favourites state
+   */
   const addFavourites = () => {
     dispatch(setFavourites([...favouritesArray, product]));
-   
+
     setInFave(true);
   };
 
-  //onclick remove button, remove product from favourites state
+  /**
+   * on clicking of the remove button, remove product from favourites state
+   */
   const removeFavourites = () => {
     const newFavourites = favouritesArray.filter(
       (fave) => fave.id_entry != product.id_entry
     );
-    
-    dispatch(setFavourites(newFavourites))
-    //setFavourites(newFavourites);
+
+    dispatch(setFavourites(newFavourites));
   };
 
   //on any change in favourites state, update local storage
   useEffect(() => {
-   
-    setLocal(favouritesArray);//user.email, 
-    
-    const exist = favouritesArray.some((fave) => fave.id_entry == product.id_entry);
+    setLocal(favouritesArray); //user.email,
+
+    const exist = favouritesArray.some(
+      (fave) => fave.id_entry == product.id_entry
+    );
 
     setInFave(exist);
   }, [favouritesArray]);

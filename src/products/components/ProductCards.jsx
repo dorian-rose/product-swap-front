@@ -6,10 +6,9 @@ import { InterestedButton } from "./InterestedButton";
 /**
  * function that receives data of product and presents it in return jsx
  * @param {Object} props Object whose properties contain product data
- * @returns jsx
  */
 export const ProductCards = (props) => {
-  const { user,isAuthenticated } = useAuth0();
+  const { user, isAuthenticated } = useAuth0();
 
   //deconstruct variables from object to retrieve data of product
   const { title, description, formatdate, image, id_entry, email } = props;
@@ -26,7 +25,7 @@ export const ProductCards = (props) => {
       <div>
         <img
           className="w-full"
-          src={`http://localhost:3000/uploads/${image}`}
+          src={`https://product-exchange.onrender.com/uploads/${image}`}
           alt={title}
         />
       </div>
@@ -35,14 +34,16 @@ export const ProductCards = (props) => {
       </h3>
       <h4 className="mx-5 capitalize font-light">{description}</h4>
       <div className="flex justify-start m-5">
-        
         {user?.email && user?.email != email && (
           <FavouriteButton product={props} />
         )}
         {!user && <InterestedButton />}
-          <Link className="font-light m-3 border border-turquoise hover:bg-turquoise hover:text-white rounded-md px-2 shadow-lg" to={`/view/${id_entry}`}>
-            {linkText}
-          </Link>
+        <Link
+          className="font-light m-3 border border-turquoise hover:bg-turquoise hover:text-white rounded-md px-2 shadow-lg"
+          to={`/view/${id_entry}`}
+        >
+          {linkText}
+        </Link>
       </div>
       <p className="m-5 text-xs font-light ">Date posted: {formatdate}</p>
     </article>

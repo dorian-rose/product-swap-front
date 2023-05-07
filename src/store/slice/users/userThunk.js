@@ -19,7 +19,7 @@ export const getUsers = (url, method, body) => {
         const newData = { ...body } //from body
 
         try {
-            if (method == "DELETE") {
+            if (method == "PUT" || method == "POST" || method == "DELETE") {
 
                 options = {
                     method: method,
@@ -29,17 +29,10 @@ export const getUsers = (url, method, body) => {
                     }
                 }
             }
-            if (method == "PUT" || method == "POST") {
 
-                options = {
-                    method: method,
-                    body: body
-                }
-            }
             const response = await fetch(url, options);
 
             data = await response.json();
-
 
         } catch (error) {
             console.log('FAILED while fetching', error)

@@ -1,14 +1,14 @@
 import { NavLink } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
-import { LogoutButton } from "../auth/components/LogoutButton";
-import { LoginButton } from "../auth/components/LoginButton";
+import { LogoutButton } from "./components/LogoutButton";
+import { LoginButton } from "./components/LoginButton";
 import { Search } from "../products/components/Search";
 
 export const UserBar = () => {
   const { isAuthenticated } = useAuth0();
   return (
     <div className="md:border-b">
-      <ul className="relative md:p-4  flex flex-col md:flex-row text-end md:justify-between  mx-10">
+      <ul className="relative md:p-4 ms-16 flex flex-col md:flex-row text-end md:justify-end  mx-10">
         <li className="py-1 md:py-0 hidden md:inline">
           <Search />
         </li>

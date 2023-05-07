@@ -5,7 +5,6 @@ import { getProducts } from "../../store/slice/products/thunk";
 
 /**
  *function that retrieves details of a product and returns a component, sending it the product details.
- * @returns jsx
  */
 export const UpdateProductPage = () => {
   const dispatch = useDispatch();

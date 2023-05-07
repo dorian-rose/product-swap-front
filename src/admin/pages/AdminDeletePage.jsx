@@ -6,7 +6,6 @@ import { AdminDeleteButton } from "../components/AdminDeleteButton";
 
 /**
  * Function that collects product id from params,returns delete button component and jsx and sends id delete component
- * @returns jsx
  */
 export const AdminDeletePage = () => {
   const { id } = useParams();
@@ -26,27 +25,25 @@ export const AdminDeletePage = () => {
     dispatch(getProducts(url, method));
   }, []);
 
-  return (<>   
-   {isLoading ? (
-          <img src="https://i.gifer.com/ZKZg.gif" alt="loading gif" />
-        ) : (
-          <>
+  return (
+    <>
+      {isLoading ? (
+        <img src="https://i.gifer.com/ZKZg.gif" alt="loading gif" />
+      ) : (
+        <>
           <p className="text-burgundy tracking-widest text-base md:text-lg font-light mt-7">
             Are you sure you want to delete item?
-            </p>
+          </p>
           <AdminDeleteButton id_entry={id} />
-          </>
-        )
-      }
+        </>
+      )}
 
       <button
-       className="text-center border rounded-md border-turquoise m-5  px-5 py-1  hover:bg-turquoise hover:text-white"
+        className="text-center border rounded-md border-turquoise m-5  px-5 py-1  hover:bg-turquoise hover:text-white"
         onClick={() => navigate("/admin/products")}
       >
         Back
-      </button> 
-    </>);
+      </button>
+    </>
+  );
 };
-
-
-         

@@ -1,12 +1,18 @@
 
-
+/**
+ * 
+ * @param {String} url url for fetch. Data retrieved by fetch (e.g. which fetch is made) will depend on this url.
+ * @param {String} method 
+ * @param {Object} [body] data for PUT, POST and DELETE requests 
+ * @returns Object -data and or ok value in case of success, or error
+ */
 export const dataFetch = async (url, method, body) => {
     let data;
-    console.log(body)
+
     let options = {};
 
     const newData = { ...body } //from body
-    console.log(newData)
+
     try {
         if (method == "DELETE" || method == "POST" || method == "PUT") {
 

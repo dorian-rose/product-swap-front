@@ -1,14 +1,12 @@
 import { useNavigate } from "react-router-dom";
-import { getSearchProducts } from "../../store/slice/search/searchThunk";
 import { getProducts } from "../../store/slice/products/thunk";
 import { useForm } from "react-hook-form";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useState } from "react";
 
 /**
  * function that returns jsx of form, collects search term from form input and dispatches search to search reducer . If receives category, searches only within category
  * @param {Object} [param0] deconstruct to get => category in which to search (optional)
- * @returns jsx
  */
 export const AdminSearch = () => {
   const [productErrors, setProductErrors] = useState(false);
@@ -21,19 +19,17 @@ export const AdminSearch = () => {
     handleSubmit,
   } = useForm({ mode: "all" });
 
-  //on submit - call to search api 
+  //on submit - call to search api
   const callDispatch = ({ search }) => {
     //detail for fetch
     const limit = import.meta.env.VITE_LIMIT;
-   const url =`${
-        import.meta.env.VITE_PRODUCT_URL
-      }search?search=${search}&limit=${limit}&page=1`;
+    const url = `${
+      import.meta.env.VITE_PRODUCT_URL
+    }search?search=${search}&limit=${limit}&page=1`;
     const method = "GET";
-    
 
     //make dispatch
     dispatch(getProducts(url, method));
-
   };
 
   return (
