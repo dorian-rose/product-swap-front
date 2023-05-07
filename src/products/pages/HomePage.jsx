@@ -1,6 +1,5 @@
 import { useAuth0 } from "@auth0/auth0-react";
-import { LoginButton } from "../../ui/components/LoginButton";
-
+import tree_logo from "../../assets/tree_logo.jpg";
 /**
  * function that returns welcome message jsx. jsx is conditional and view will depend on user/isAuthenticated status
  */
@@ -53,7 +52,7 @@ export const HomePage = () => {
           )}
         </article>
         <div className="w-3/4 mx-auto my-10 md:flex md:flex-col md:justify-center">
-          <img src="../src/assets/tree_logo.jpg" alt="logo" />
+          <img src={tree_logo} alt="logo" />
         </div>
       </section>
     </>

@@ -7,7 +7,6 @@ import { useState } from "react";
 /**
  * function that returns a form - on receiving inputs dispatches via PUT fetch to update product
  * @param {Object} props object containing details of a product
- * @returns jsx
  */
 export const UpdateForm = (props) => {
   //dispatch and navigate to dispatch and navigate back on completion
@@ -27,7 +26,10 @@ export const UpdateForm = (props) => {
     handleSubmit,
   } = useForm({ mode: "all" });
 
-  //send to thunk and store
+  /**
+   * function that collects and configures formData to be sent as body and sends a PUT fetch request.
+   * @param {Object} data collected from form inputs, properties are: title, description, image, category, email, claimed
+   */
   const callDispatch = (data) => {
     //define body from formdata for fetch
     const { title, description, image, category, email, claimed } = data;

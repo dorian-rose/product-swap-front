@@ -1,5 +1,6 @@
 import { NavLink, Link, useNavigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
+import tree_logo from "../../assets/tree_logo.jpg";
 
 /**
  * function that returns jsx of dashboard -that is, links to various admin locations
@@ -19,7 +20,7 @@ export const DashboardPage = () => {
               {" "}
               <img
                 className="w-3/4 block m-auto"
-                src="src/assets/shopping-bags-line-icon-free-vector.jpeg"
+                src={tree_logo}
                 alt="products"
               />{" "}
               <p className="text-turquoise font-thin text-center">
