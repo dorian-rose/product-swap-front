@@ -1,4 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
+import { AdminUserDelete } from "./AdminUserDelete";
 
 /**
  * function that returns jsx table row showing user information
@@ -23,7 +24,7 @@ export const UserRow = (props) => {
       </td>
       <td>
         <Link
-          to={"/"}
+          to={`/admin/delete/${email}`}
           className="text-center border px-2 rounded-md border-burgundy text-burgundy hover:bg-burgundy hover:text-white"
         >
           delete

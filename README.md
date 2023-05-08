@@ -2,9 +2,10 @@
 
 ## To start project:
 
-- Run 'yarn' to install all dependencies used (see note below)
-- Run 'yarn dev' to start
+- Clone this repository from gitHub, and direct to folder, and in terminal, navigate to local repository folder
+- In terminal, run 'yarn' to install all dependencies used (see note below)
 - Configure environmental variables. Required variables can be found in .env.template file
+- Run 'yarn dev' to inicialize project
 
 NOTE: versions of dependencies different to those used here may cause conflicts. See list below (and package.json file) for dependencies and versions:
 
@@ -22,9 +23,9 @@ NOTE: versions of dependencies different to those used here may cause conflicts.
 
 ## Related documents
 
-API are used to send to and receive from data base. To read API documentation: https://documenter.getpostman.com/view/26092520/2s93eYTXQi
+APIs are used to send to and receive from data base. To read API documentation: https://documenter.getpostman.com/view/26092520/2s93eYTXQi
 
-To see open-source backend code: https://github.com/dorian-rose/product-swap-back
+To see open-source backend code for APIs: https://github.com/dorian-rose/product-swap-back
 
 Code is documented using JSDocs. To read documentation of code:
 
@@ -34,7 +35,7 @@ Deployed website can be viewed here:
 
 Postgres SQL Elephant database has been used. The following schema demonstrates the tables used and their relations.
 
-<img src="src/assets/blog-project-schema.png" alt="relational diagram for sql database" style="display: block; margin: 0 auto"/>
+<img src="src/assets/relation-diagram.png" alt="relational diagram for sql database" style="display: block; margin: 0 auto"/>
 
 ## Roles
 

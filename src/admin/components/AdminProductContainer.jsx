@@ -76,17 +76,17 @@ export const AdminProductContainer = ({ user = "" }) => {
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-100 border-t border-gray-100">
-              {ok ? (
+              {ok &&
                 products.map((product) => (
                   <ProductRow key={product.id_entry} {...product} />
-                ))
-              ) : (
-                <p className="tracking-widest text-burgundy text-base font-light my-7">
-                  {error}
-                </p>
-              )}
+                ))}
             </tbody>
           </table>
+          {!ok && (
+            <p className="tracking-widest text-burgundy text-base font-light my-7">
+              {error}
+            </p>
+          )}
         </div>
       )}
       {ok && (
