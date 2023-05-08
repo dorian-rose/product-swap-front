@@ -7,7 +7,7 @@ import tree_logo from "../../assets/tree_logo.jpg";
  */
 export const DashboardPage = () => {
   const { user } = useAuth0();
-  console.log(user);
+
   return (
     <section className="mb-32">
       <h1 className="m-5 md:m-10 capitalize font-light text-center tracking-widest text-2xl md:text-3xl">

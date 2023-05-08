@@ -40,10 +40,9 @@ export const UserDetailContainer = ({ user }) => {
         </tr>
         <tr className="border-b">
           <td className="pt-5 pb-3 text-center">
-            {" "}
             <Link
-              to={"/"}
-              className="border px-2 rounded-md border-burgundy text-burgundy hover:bg-burgundy hover:text-white"
+              to={`/admin/delete/${email}`}
+              className="text-center border px-2 rounded-md border-burgundy text-burgundy hover:bg-burgundy hover:text-white"
             >
               delete
             </Link>

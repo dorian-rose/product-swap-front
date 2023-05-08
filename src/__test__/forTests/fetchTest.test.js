@@ -1,9 +1,8 @@
-import { dataFetch } from './dataFetch';
+import { dataFetch } from '../../helpers/fetch';
 
 describe('dataFetch function', () => {
     test('should fetch data successfully', async () => {
-        const url = `${import.meta.env.VITE_PRODUCT_URL
-            }category?category=clothing&limit=6&page=1`;
+        const url = "https://product-exchange.onrender.com/entries/category?category=clothing&limit=6&page=1";
         const method = 'GET';
         const body = {};
         const data = await dataFetch(url, method, body);
@@ -11,8 +10,7 @@ describe('dataFetch function', () => {
     });
 
     test('should handle errors during fetching', async () => {
-        const url = `${import.meta.env.VITE_PRODUCT_URL
-            }category?category=clothing&limit=6&pa`;
+        const url = "https://product-exchange.onrender.com/entries/category?category=clothing&limit=6&pa";
         const method = 'GET';
         const body = {};
         try {
