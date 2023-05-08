@@ -20,7 +20,7 @@ export const UserBar = () => {
                 `nav-link ${isActive ? "isActive" : ""} m-2 font-thin`
               }
             >
-              List item
+              Add item
             </NavLink>
           </li>
         )}
