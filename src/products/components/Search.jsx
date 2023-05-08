@@ -56,7 +56,7 @@ export const Search = ({ category }) => {
           type="search"
           placeholder={`Search ${category || "all"}`}
           name="search"
-          className="placeholder:font-thin focus:outline-none focus:border-turquoise focus:border-2 focus:border-solid rounded-md w-full"
+          className="placeholder:font-thin focus:outline-none focus:border-turquoise focus:border-2 focus:border-solid rounded-md w-full mx-1"
         />
         <p className="w-32 txt-cntr text-burgundy font-thin">
           {" "}

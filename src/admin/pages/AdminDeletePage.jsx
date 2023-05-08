@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getProducts } from "../../store/slice/products/thunk";
 import { AdminDeleteButton } from "../components/AdminDeleteButton";
+import { AdminUserDelete } from "../components/AdminUserDelete";
 
 /**
  * Function that collects product id from params,returns delete button component and jsx and sends id delete component
@@ -34,7 +35,11 @@ export const AdminDeletePage = () => {
           <p className="text-burgundy tracking-widest text-base md:text-lg font-light mt-7">
             Are you sure you want to delete item?
           </p>
-          <AdminDeleteButton id_entry={id} />
+          {!isNaN(parseInt(id)) ? (
+            <AdminDeleteButton id_entry={id} />
+          ) : (
+            <AdminUserDelete email={id} />
+          )}
         </>
       )}
 

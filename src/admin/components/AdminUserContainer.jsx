@@ -35,7 +35,7 @@ export const AdminUserContainer = () => {
               dispatch(getUsers(url + 1, method))
             }>View all</button>  */}
           <table className="table-auto overflow-scroll mt-4 mb-5  md:mb-10 w-full border-collapse bg-white text-left text-base font-thin text-gray-500">
-            <thead className="bg-gray-50">
+            <tbody className="bg-gray-50">
               <tr>
                 <th scope="col" className="px-6 py-4 font-medium text-gray-900">
                   Name
@@ -56,7 +56,7 @@ export const AdminUserContainer = () => {
                   className="px-6 py-4 font-medium text-gray-900"
                 ></th>
               </tr>
-            </thead>
+            </tbody>
             <tbody className="divide-y divide-gray-100 border-t border-gray-100">
               {ok &&
                 users.map((user) => <UserRow key={user.email} {...user} />)}

@@ -6,7 +6,7 @@ import tree_logo from "../../assets/tree_logo.jpg";
 export const HomePage = () => {
   const { loginWithRedirect } = useAuth0();
   const { user, isAuthenticated } = useAuth0();
-  console.log(user);
+
   return (
     <>
       <section className="grid md:grid-cols-2 mb-10">
