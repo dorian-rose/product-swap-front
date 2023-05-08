@@ -9,11 +9,14 @@ export const ProductRow = (props) => {
 
   return (
     <tr className="hover:bg-gray-50">
-      <td className="p-2">{title}</td>
-      <td>{category}</td>
+      <td className="capitalize p-2">{title}</td>
+      <td className="capitalize">{category}</td>
       <td>
-        <Link className="text-turquoise hover:underline" to="/admin/dashboard">
-          {email} add link to user
+        <Link
+          className="text-turquoise hover:underline"
+          to={`/admin/user/${email}`}
+        >
+          {email}
         </Link>
       </td>
       {claimed ? (
