@@ -3,6 +3,7 @@ import { CategoryBar } from "./CategoryBar";
 import { UserBar } from "./UserBar";
 import { Hamburger } from "./components/Hamburger";
 import { useState } from "react";
+import tree_logo from "../assets/tree_logo.jpg";
 
 export const NavBar = () => {
   const [menuPosition, setMenuPosition] = useState("hidden");
@@ -18,7 +19,7 @@ export const NavBar = () => {
       <div className="w-12">
         <img
           className="w-12 start-4 absolute top-32 md:top-28"
-          src="../src/assets/tree_logo.jpg"
+          src={tree_logo}
           alt=""
         />{" "}
       </div>

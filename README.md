@@ -34,7 +34,7 @@ Deployed website can be viewed here:
 
 Postgres SQL Elephant database has been used. The following schema demonstrates the tables used and their relations.
 
-<img src="src/assets/blog-project-schema.png" alt="relational diagram for sql database" style="display: block; margin: 0 auto"/>
+<img src="src/assets/relation-diagram.png" alt="relational diagram for sql database" style="display: block; margin: 0 auto"/>
 
 ## Roles
 

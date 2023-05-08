@@ -7,8 +7,8 @@ import { store } from "./store/store.js";
 import { Provider } from "react-redux";
 import { Auth0Provider } from "@auth0/auth0-react";
 
-const domain = import.meta.env.AUTH_DOMAIN;
-const clientId = import.meta.env.AUTH_CLIENT_ID;
+const domain = import.meta.env.VITE_AUTH_DOMAIN;
+const clientId = import.meta.env.VITE_AUTH_CLIENT_ID;
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
