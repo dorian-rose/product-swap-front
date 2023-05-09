@@ -49,11 +49,6 @@ The following diagram indicates accessibility and permissions of each role.
 
 <img src="src/assets/roles.png" alt="role permissions for site" style="display: block; margin: 0 auto"/>
 
-### Users
+https://645913add10ca200b745a042--sprightly-liger-93a8e3.netlify.app/
 
-Test user details are provided in order to explore app:
-
-- ADMIN: pepe@correo.es Pass: QueVivaPepe2023
-
-- User: jose@correo.es Pass: Abcd1234
-- User: ana@correo.es Pass: Abcd1234
+https://64594de9bc47c01a6d706bfa--splendid-kitten-bebeda.netlify.app/, http://localhost:5173/
