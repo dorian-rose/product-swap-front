@@ -16,7 +16,7 @@ export const DashboardPage = () => {
       <h1 className="m-5 md:m-10 capitalize font-light text-center tracking-widest text-2xl md:text-3xl">
         Dashboard
       </h1>
-      <div className="grid grid-cols-3">
+      <div className="grid grid-cols-2">
         <article>
           <div>
             <Link to="/admin/products">
@@ -45,7 +45,7 @@ export const DashboardPage = () => {
             </p>
           </Link>
         </article>
-        <article>
+        {/* <article>
           <div>
             <Link to="/">
               <img className="pt-10  w-1/2 block m-auto" src={pen} alt="" />
@@ -54,7 +54,7 @@ export const DashboardPage = () => {
               </p>
             </Link>
           </div>
-        </article>
+        </article> */}
       </div>
     </section>
   );

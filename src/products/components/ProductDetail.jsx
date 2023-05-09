@@ -37,30 +37,34 @@ export const ProductDetail = ({ product }) => {
           </p>
           <div className="consumer-buttons m-5 md:m-10">
             {!user && <InterestedButton />}
-            {isAuthenticated && user.email != product.email && (
-              <div className="flex flex-col">
-                <FavouriteButton product={product} />
-                <ReserveButton product={product} user={user} />
-                <button
-                  className="w-fit mb-4 mx-1 border border-turquoise hover:bg-turquoise hover:text-white rounded-md px-2 shadow-lg"
-                  onClick={() => navigate(`/api/send/${product.id_entry}`)}
-                >
-                  Contact poster
-                </button>
-              </div>
-            )}
+            {isAuthenticated &&
+              user.email != product.email &&
+              user?.role != "admin" && (
+                <div className="flex flex-col">
+                  <FavouriteButton product={product} />
+                  <ReserveButton product={product} user={user} />
+                  <button
+                    className="w-fit mb-4 mx-1 border border-turquoise hover:bg-turquoise hover:text-white rounded-md px-2 shadow-lg"
+                    onClick={() => navigate(`/api/send/${product.id_entry}`)}
+                  >
+                    Contact poster
+                  </button>
+                </div>
+              )}
           </div>
         </div>
       </section>
 
       {(user?.email == product.email) | (user?.role == "admin") && (
         <div className="seller-buttons flex justify-center">
-          <button
-            className="text-center border rounded-md border-turquoise m-5  px-5 py-1  hover:bg-turquoise hover:text-white"
-            onClick={() => navigate(`/api/update/${product.id_entry}`)}
-          >
-            Edit
-          </button>
+          {user?.role != "admin" && (
+            <button
+              className="text-center border rounded-md border-turquoise m-5  px-5 py-1  hover:bg-turquoise hover:text-white"
+              onClick={() => navigate(`/api/update/${product.id_entry}`)}
+            >
+              Edit
+            </button>
+          )}
           <button
             className="text-center border rounded-md border-burgundy m-5 px-5 py-1  hover:bg-burgundy hover:text-white"
             onClick={() => navigate(`/api/delete/${product.id_entry}`)}

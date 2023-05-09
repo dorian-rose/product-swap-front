@@ -1,4 +1,5 @@
 import { useAuth0 } from "@auth0/auth0-react";
+
 import tree_logo from "../../assets/tree_logo.jpg";
 /**
  * function that returns welcome message jsx. jsx is conditional and view will depend on user/isAuthenticated status
@@ -6,6 +7,8 @@ import tree_logo from "../../assets/tree_logo.jpg";
 export const HomePage = () => {
   const { loginWithRedirect } = useAuth0();
   const { user, isAuthenticated } = useAuth0();
+
+  //collect data from state
 
   return (
     <>
