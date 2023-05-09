@@ -4,6 +4,7 @@ import { useState } from "react";
 import { NavLink, Link } from "react-router-dom";
 import { LogoutButton } from "../../ui/components/LogoutButton";
 import { useAuth0 } from "@auth0/auth0-react";
+import tree_logo from "../../assets/tree_logo.jpg";
 
 /**
  * returns ejs of nav bar, directing via NavLinks to other admin locations
@@ -23,8 +24,8 @@ export const AdminNavBar = () => {
       <div className="w-12">
         <img
           className="w-12 start-4 absolute top-32 md:top-28"
-          src="../src/assets/tree_logo.jpg"
-          alt=""
+          src={tree_logo}
+          alt="logo"
         />{" "}
       </div>
       <Link

@@ -19,12 +19,17 @@ export const SearchAllPage = () => {
     return (
       <>
         <div className="grid grid-cols-2 gap-2">
-          <h1 className=" capitalize">{category}</h1>
+          <h1 className="font-light uppercase text-center tracking-widest text-2xl md:text-3xl">
+            {category}
+          </h1>
           <Search category={category} />
         </div>
-        <h2 className="pt-10 capitalize">No search results for "{search}"</h2>
+        <h2 className="pt-10 tracking-widest text-base md:text-lg font-light mt-7">
+          No search results for "{search}"
+        </h2>
+
         <button
-          className="txt-cntr bg-dark pd-sm w100 block"
+          className="m-5 border border-turquoise hover:bg-turquoise hover:text-white rounded-md px-2 shadow-lg"
           onClick={() => navigate(-1)}
         >
           Back
