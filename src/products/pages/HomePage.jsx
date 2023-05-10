@@ -1,5 +1,9 @@
 import { useAuth0 } from "@auth0/auth0-react";
 
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getUsers } from "../../store/slice/users/userThunk";
+
 import tree_logo from "../../assets/tree_logo.jpg";
 /**
  * function that returns welcome message jsx. jsx is conditional and view will depend on user/isAuthenticated status
@@ -8,7 +12,24 @@ export const HomePage = () => {
   const { loginWithRedirect } = useAuth0();
   const { user, isAuthenticated } = useAuth0();
 
-  //collect data from state
+  //collect state
+  const { users, isLoading } = useSelector((state) => state.users);
+  console.log(users);
+  //define name
+  let name = "";
+  users.map((user) => {
+    name = user.name;
+  });
+
+  //define url and method required for fetch
+  const url = `${import.meta.env.VITE_USER_URL}user?email=${user.email}`;
+  const method = "GET";
+
+  //dispatch to fetch and slice, on mounting of component (useEffect)
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getUsers(url, method));
+  }, []);
 
   return (
     <>
@@ -16,10 +37,8 @@ export const HomePage = () => {
         <article className="md:flex md:flex-col md:justify-center">
           {isAuthenticated ? (
             <>
-              {" "}
               <h1 className="m-5 md:m-10 capitalize font-light text-center tracking-widest text-2xl md:text-3xl">
-                {" "}
-                Welcome, {user.nickname}!
+                Welcome, {name}!
               </h1>
               <h2 className="font-thin mb-5 text-center tracking-widest text-xl text-turquoise">
                 Thank you for using Gumtree
