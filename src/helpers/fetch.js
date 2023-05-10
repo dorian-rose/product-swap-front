@@ -7,6 +7,9 @@
  * @returns Object -data and or ok value in case of success, or error
  */
 export const dataFetch = async (url, method, body) => {
+    console.log("url", url)
+    console.log("method", method)
+    console.log("body", body)
     let data;
 
     let options = {};

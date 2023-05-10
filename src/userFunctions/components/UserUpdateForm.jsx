@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { dataFetch } from "../../helpers/fetch";
 import { getUsers } from "../../store/slice/users/userThunk";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
@@ -9,11 +9,8 @@ import { useState } from "react";
  * @param {Object} props object containing details of a product
  */
 export const UserUpdateForm = ({ user }) => {
-  //dispatch and navigate to dispatch and navigate back on completion
-  const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [file, setFile] = useState("");
-  console.log(user);
+  const { email, name, id } = user;
   //variables sent in props
   // const { email, name, id } = user;
 
@@ -29,27 +26,27 @@ export const UserUpdateForm = ({ user }) => {
    * @param {Object} data collected from form inputs, properties are: email, name, id
    */
   const callDispatch = (data) => {
-    //define  method and url for fetch
-    const url = `${import.meta.env.VITE_USER_URL}update`;
     const method = "PUT";
-    dispatch(getUsers(url, method, data));
-    navigate("/");
+    const url = `${import.meta.env.VITE_USER_URL}update`;
+    dataFetch(url, method, data);
+    navigate("-1");
   };
 
   //return form
   return (
     <>
       <h1 className="mx-5 uppercase tracking-widest text-2xl">
-        Update a listing:
+        Update profile:
       </h1>
 
       <form
         className="m-5 border border-turquoise border-1 rounded-md p-5"
         onSubmit={handleSubmit((data) => callDispatch(data))}
       >
+        <label className="font-thin text-turquoise">Name:</label>
         <input
           className="hidden"
-          // defaultValue={email}
+          defaultValue={email}
           {...register("email")}
           type="text"
           name="email"
@@ -74,7 +71,7 @@ export const UserUpdateForm = ({ user }) => {
 
         <input
           className="hidden"
-          // defaultValue={id}
+          defaultValue={id}
           {...register("id")}
           type="text"
           name="id"
