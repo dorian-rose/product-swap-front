@@ -9,6 +9,16 @@ import tree_logo from "../../assets/tree_logo.jpg";
  * function that returns welcome message jsx. jsx is conditional and view will depend on user/isAuthenticated status
  */
 export const HomePage = () => {
+  const dispatch = useDispatch();
+
+  //connect to db
+  useEffect(() => {
+    const urlConnect = `${
+      import.meta.env.VITE_PRODUCT_URL
+    }entries?limit=1&page=1`;
+    dispatch(getUsers(urlConnect, "GET"));
+  }, []);
+
   const { loginWithRedirect } = useAuth0();
   const { user, isAuthenticated } = useAuth0();
   console.log(user);
@@ -27,7 +37,6 @@ export const HomePage = () => {
     const method = "GET";
 
     //dispatch to fetch and slice, on mounting of component (useEffect)
-    const dispatch = useDispatch();
     useEffect(() => {
       dispatch(getUsers(url, method));
     }, []);
