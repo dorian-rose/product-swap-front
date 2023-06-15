@@ -24,7 +24,7 @@ export const FavouritesPage = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         {!favouritesArray || favouritesArray.length == 0 ? (
           <p className="tracking-widest text-burgundy text-base font-light my-7">
-            You have items in favourites
+            You have no items in favourites
           </p>
         ) : (
           favouritesArray.map((product) => (

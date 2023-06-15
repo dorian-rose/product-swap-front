@@ -11,7 +11,7 @@ import tree_logo from "../../assets/tree_logo.jpg";
 export const HomePage = () => {
   const { loginWithRedirect } = useAuth0();
   const { user, isAuthenticated } = useAuth0();
-
+  console.log(user);
   //collect state
   const { users, isLoading } = useSelector((state) => state.users);
   console.log(users);
@@ -21,15 +21,17 @@ export const HomePage = () => {
     name = user.name;
   });
 
-  //define url and method required for fetch
-  const url = `${import.meta.env.VITE_USER_URL}user?email=${user.email}`;
-  const method = "GET";
+  if (user) {
+    //define url and method required for fetch
+    const url = `${import.meta.env.VITE_USER_URL}user?email=${user.email}`;
+    const method = "GET";
 
-  //dispatch to fetch and slice, on mounting of component (useEffect)
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getUsers(url, method));
-  }, []);
+    //dispatch to fetch and slice, on mounting of component (useEffect)
+    const dispatch = useDispatch();
+    useEffect(() => {
+      dispatch(getUsers(url, method));
+    }, []);
+  }
 
   return (
     <>
