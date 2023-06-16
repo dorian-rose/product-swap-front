@@ -3,6 +3,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getUsers } from "../../store/slice/users/userThunk";
+import { getProducts } from "../../store/slice/products/thunk";
 
 import tree_logo from "../../assets/tree_logo.jpg";
 /**
@@ -16,7 +17,7 @@ export const HomePage = () => {
     const urlConnect = `${
       import.meta.env.VITE_PRODUCT_URL
     }entries?limit=1&page=1`;
-    dispatch(getUsers(urlConnect, "GET"));
+    dispatch(getProducts(urlConnect, "GET"));
   }, []);
 
   const { loginWithRedirect } = useAuth0();
@@ -24,12 +25,6 @@ export const HomePage = () => {
   console.log(user);
   //collect state
   const { users, isLoading } = useSelector((state) => state.users);
-  console.log(users);
-  //define name
-  let name = "";
-  users.map((user) => {
-    name = user.name;
-  });
 
   if (user) {
     //define url and method required for fetch
@@ -41,7 +36,12 @@ export const HomePage = () => {
       dispatch(getUsers(url, method));
     }, []);
   }
-
+  console.log("users", users);
+  //define name
+  let name = "";
+  users.map((userdb) => {
+    name = userdb.name;
+  });
   return (
     <>
       <section className="grid md:grid-cols-2 mb-10">

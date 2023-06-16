@@ -8,9 +8,7 @@ import { dataFetch } from "../../../helpers/fetch"
  * @param {Object} [body] body of fetch providing data to endpoint
  */
 export const getUsers = (url, method, body) => {
-    console.log("thunk url", url)
-    console.log("thunk method", method)
-    console.log("thunk body", body)
+
     return async (dispatch, getState) => {
 
         dispatch(startLoadingUsers())
