@@ -23,11 +23,7 @@ export const ProductCards = (props) => {
   return (
     <article className="shadow-lg m-10 md:mx-5 flex flex-col justify-between">
       <div>
-        <img
-          className="w-full"
-          src={`https://product-exchange.onrender.com/uploads/${image}`}
-          alt={title}
-        />
+        <img className="w-full" src={image} alt={title} />
       </div>
       <h3 className="text-start m-5 capitalize font-normal tracking-wide text-turquoise text-xl">
         {title}

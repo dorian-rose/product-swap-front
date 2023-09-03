@@ -3,6 +3,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { FavouriteButton } from "./FavouriteButton";
 import { InterestedButton } from "./InterestedButton";
 import { ReserveButton } from "./ReserveButton";
+import { useEffect } from "react";
 
 /**
  * function that receives product data and returns jsx displaying data
@@ -13,16 +14,15 @@ export const ProductDetail = ({ product }) => {
   const navigate = useNavigate();
   //which buttons are displayed will depend on user property - if authenticated, if product owner and role
   const { user, isAuthenticated } = useAuth0();
+  useEffect(() => {
+    console.log(product.image);
+  }, []);
 
   return (
     <>
       <section className="shadow-lg max-w-4xl mx-auto  grid md:grid-cols-2  justify-between">
         <div className="">
-          <img
-            className="w-full"
-            src={`https://product-exchange.onrender.com/uploads/${product.image}`}
-            alt={product.title}
-          />
+          <img className="w-full" src={product.image} alt={product.title} />
         </div>
         <div className="product-info max-w-fit flex flex-col justify-center">
           <h1 className="uppercase tracking-widest text-2xl md:text-3xl m-5 md:m-10 font-light text-turquoise">
