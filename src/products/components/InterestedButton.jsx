@@ -11,11 +11,11 @@ export const InterestedButton = () => {
     <button className="text-center " onClick={() => loginWithRedirect()}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        fill="red"
+        fill="none"
         viewBox="0 0 24 24"
         strokeWidth={1.5}
-        stroke="red"
-        className="w-6 h-6 hover:fill-none"
+        stroke="#315b61"
+        className="w-6 h-6 hover:fill-turquoise"
       >
         <path
           strokeLinecap="round"

@@ -1,6 +1,6 @@
 import { getLocal, setLocal } from "../helpers/localStorage";
 import { useState, useEffect } from "react";
-import { useAuth0 } from "@auth0/auth0-react";
+
 import { setFavourites } from "../../store/slice/favourites/faveSlice";
 import { useDispatch, useSelector } from "react-redux";
 /**
@@ -9,7 +9,6 @@ import { useDispatch, useSelector } from "react-redux";
  * @returns  button (jsx), onclick the button adds product to Local Storage (if not already there) or removes from local storage if already there.
  */
 export const FavouriteButton = ({ product }) => {
-  //const { user } = useAuth0();
   const [inFave, setInFave] = useState(false);
 
   //collect state
