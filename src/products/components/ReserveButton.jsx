@@ -7,7 +7,7 @@ import { dataFetch } from "../../helpers/fetch";
  * returns an jsx of button - on click, dispatches a PUT to fetch, changing product's 'claimed' property value to false, or vice-versa if already false.
  * @param {Object} param0 receives properties product (object) and user (object)
  */
-export const ReserveButton = ({ product, user }) => {
+export const ReserveButton = ({ product, userEmail }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { title, description, image, category, email, id_entry } = product;
@@ -59,7 +59,7 @@ export const ReserveButton = ({ product, user }) => {
           className="w-fit mb-4 mx-1 border border-turquoise hover:bg-turquoise hover:text-white rounded-md px-2 shadow-lg"
           onClick={update}
         >
-          {user?.email == product.email && user?.role == "admin" ? (
+          {userEmail == product.email && role == "admin" ? (
             <>Mark as unavailable</>
           ) : (
             <>Reserve</>

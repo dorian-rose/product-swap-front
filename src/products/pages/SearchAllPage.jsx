@@ -54,9 +54,9 @@ export const SearchAllPage = () => {
           ))
         )}
       </section>
-      <div className="mg-md txt-cntr">
+      <div className="text-center mb-10">
         <button
-          className="mg-sm"
+          className="font-light m-2 border border-turquoise disabled:hover:bg-white disabled:hover:text-slate-600 disabled:shadow-none disabled:border-slate-200 hover:bg-turquoise hover:text-white rounded-md px-2 shadow-lg"
           disabled={isLoading || (page <= 1 && true)}
           onClick={() =>
             dispatch(getProducts(url + (parseInt(page) - 1), method))
@@ -64,9 +64,11 @@ export const SearchAllPage = () => {
         >
           Previous
         </button>
-        <button className="mg-sm">Page {page}</button>
+        <button className="font-light m-2 border border-turquoise hover:bg-turquoise hover:text-white rounded-md px-2 shadow-lg">
+          Page {page}
+        </button>
         <button
-          className="mg-sm"
+          className="font-light m-2 border border-turquoise disabled:hover:bg-white disabled:hover:text-slate-600 disabled:shadow-none disabled:border-slate-200 hover:bg-turquoise hover:text-white rounded-md px-2 shadow-lg"
           disabled={isLoading || (page >= total_pages && true)}
           onClick={() =>
             dispatch(getProducts(url + (parseInt(page) + 1), method))

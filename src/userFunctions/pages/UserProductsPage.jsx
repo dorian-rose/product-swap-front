@@ -9,8 +9,8 @@ import { ProductCards } from "../../products/components/ProductCards";
  * function that retrieves all products associated to one user, and returns jsx and components displaying these products
  */
 export const UserProductsPage = () => {
-  //get user to define user email
-  const { user } = useAuth0();
+  //get  email
+  const { email } = useSelector((state) => state.logged);
 
   //get data from  state
   const { ok, page, products, isLoading, total_pages, error } = useSelector(
@@ -20,9 +20,9 @@ export const UserProductsPage = () => {
   //define variables for fetch and fetch url
   const limit = import.meta.env.VITE_LIMIT;
   const method = "GET";
-  const url = `${import.meta.env.VITE_PRODUCT_URL}entries?user=${
-    user.email
-  }&limit=${limit}&page=`; //url will be complete with page number when calling
+  const url = `${
+    import.meta.env.VITE_PRODUCT_URL
+  }entries?user=${email}&limit=${limit}&page=`; //url will be complete with page number when calling
 
   const dispatch = useDispatch();
   useEffect(() => {

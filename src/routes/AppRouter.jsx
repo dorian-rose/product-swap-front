@@ -1,16 +1,45 @@
 import { Routes, Route, Navigate } from "react-router-dom";
-import { useAuth0 } from "@auth0/auth0-react";
+import { useEffect, useState } from "react";
 import { ProductsRouter } from "./ProductsRouter";
 import { ApiRouter } from "./ApiRouter";
 import { AdminRouter } from "./AdminRouter";
 import { HomePage } from "../products/pages";
+import { useDispatch, useSelector } from "react-redux";
+import { setLogged } from "../store/slice/logged/loggedSlice";
+import { auth } from "../config/firebaseConfig";
+import { onAuthStateChanged } from "firebase/auth";
 
 export const AppRouter = () => {
-  const { user, isAuthenticated, isLoading } = useAuth0();
-  console.log(isAuthenticated);
-  if (isLoading) {
-    return <div>Loading ...</div>;
-  }
+  const {  isAuthenticated } = useSelector((state) => state.logged);
+  // const { user, isAuthenticated, isLoading } = useAuth0();
+  // console.log(isAuthenticated);
+
+  const user = { email: "afgsf" };
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    console.log("app router");
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const { displayName, uid, email, photoURL } = user;
+        dispatch(
+          setLogged({
+            displayName,
+            uid,
+            email,
+            photoURL,
+            isAuthenticated: true,
+            role: "user",
+          })
+        );
+      } else {
+        dispatch(setLogged({}));
+      }
+    });
+  }, [auth]);
+
+  // const { isAuthenticated } = useSelector((state) => state.logged);
+  // console.log(isAuthenticated);
   return (
     <Routes>
       {/* if role is admin, redirect to admin routers, else, redirect to product routers */}
@@ -24,10 +53,10 @@ export const AppRouter = () => {
       {isAuthenticated ? (
         <Route path="/api/*" element={<ApiRouter />} />
       ) : (
-        <Route path="/api/*" element={<HomePage />} />
+        <Route path="/api/*" element={<Navigate to={"/"} />} />
       )}
       {user?.role != "admin" && (
-        <Route path="/admin/*" element={<ProductsRouter />} />
+        <Route path="/admin/*" element={<Navigate to={"/"} />} />
       )}
     </Routes>
   );

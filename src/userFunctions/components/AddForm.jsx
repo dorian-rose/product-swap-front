@@ -12,7 +12,9 @@ export const AddForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [file, setFile] = useState("");
-  const { user } = useAuth0();
+
+  //get  email
+  const { email } = useSelector((state) => state.logged);
 
   //collect data from state
   const { ok, isLoading, error } = useSelector((state) => state.products);
@@ -30,14 +32,14 @@ export const AddForm = () => {
    */
   const callDispatch = (data) => {
     //define body from formdata for fetch
-    const { title, description, category, email, claimed } = data;
+    const { title, description, category } = data;
     const formData = new FormData();
     formData.append("file", file);
     formData.append("title", title);
     formData.append("description", description);
     formData.append("category", category);
     formData.append("email", email);
-    formData.append("claimed", claimed);
+    formData.append("claimed", false);
 
     //define body, method and url for fetch
     const url = `${import.meta.env.VITE_PRODUCT_URL}create`;
@@ -123,22 +125,22 @@ export const AddForm = () => {
         <p className="font-thin italic text-burgundy">
           {errors.category?.message}
         </p>
-        <input
+        {/* <input
           className="hidden"
-          defaultValue={user.email}
+          defaultValue={email}
           {...register("email")}
           type="text"
           name="email"
           id="email"
-        />
-        <input
+        /> */}
+        {/* <input
           className="hidden"
           defaultValue={false}
           {...register("claimed")}
           type="text"
           name="claimed"
           id="claimed"
-        />
+        /> */}
         <input
           className="mt-2 w-full border border-turquoise hover:bg-turquoise hover:text-white rounded-md px-2 "
           type="submit"
