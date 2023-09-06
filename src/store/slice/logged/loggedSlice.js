@@ -9,7 +9,7 @@ export const loggedSlice = createSlice({
         displayName: "",
         photoURL: "",
         isAuthenticated: false,
-        role: ""
+        role: "user"
     },
     reducers: {
 

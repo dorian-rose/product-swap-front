@@ -35,29 +35,29 @@ export const AccessForm = ({ enterUser, nameHidden }) => {
   return (
     <>
       <form
-        className="login-form"
+        className="m-5 border border-turquoise border-1 rounded-md px-5 sm:py-5 max-w-md m-auto"
         onSubmit={handleSubmit((data) => enterUser(data))}
       >
         {!nameHidden && (
           <>
             <label
               htmlFor="name"
-              className="relative top-5 left-12 sm:left-20 bg-tertiary px-2 text-lines text-sm"
+              className="relative top-5 left-3  bg-white px-1 text-turquoise font-thin text-sm"
             >
-              Nombre
+              Name
             </label>
             <input
               {...register("name")}
               type="text"
               id="name"
               name="name"
-              className="mt-2 w-10/12 m-auto block border border-1 rounded-3xl px-4 py-2 focus:outline-none focus:border-primary "
+              className="border mt-2 px-2 sm:py2 font-thin  focus:outline-none focus:border-turquoise focus:border-2 focus:border-solid rounded-md w-full"
             />
           </>
         )}
         <label
           htmlFor="email"
-          className="relative top-5 top-5 left-12 sm:left-20 bg-tertiary px-2 text-lines text-sm"
+          className="relative top-5 left-3  bg-white px-1 text-turquoise font-thin text-sm"
         >
           Email
         </label>
@@ -72,16 +72,16 @@ export const AccessForm = ({ enterUser, nameHidden }) => {
           type="text"
           id="email"
           name="email"
-          className="mt-2 w-10/12 m-auto block border border-1 rounded-3xl px-4 py-2 focus:outline-none focus:border-primary "
+          className="border mt-2 px-2 sm:py2 font-thin  focus:outline-none focus:border-turquoise focus:border-2 focus:border-solid rounded-md w-full"
         />
-        <p className="text-center italic text-alert ">
+        <p className="font-thin italic text-burgundy">
           {errors.email?.message}
         </p>
         <label
           htmlFor="password"
-          className="relative top-5 top-5 left-12 sm:left-20 bg-tertiary px-2 text-lines text-sm"
+          className="relative top-5 left-3 bg-white px-1 text-turquoise font-thin text-sm"
         >
-          Contraseña
+          Password
         </label>
         <input
           {...register("password", {
@@ -95,18 +95,18 @@ export const AccessForm = ({ enterUser, nameHidden }) => {
           id="password"
           name="password"
           onChange={(ev) => setFirstPassword(ev.target.value)}
-          className="mt-2 w-10/12 m-auto block border border-1  rounded-3xl px-4 py-2 focus:outline-none focus:border-primary "
+          className="border mt-2 px-2 sm:py2 font-thin  focus:outline-none focus:border-turquoise focus:border-2 focus:border-solid rounded-md w-full"
         />
-        <p className="text-center italic text-alert ">
+        <p className="font-thin italic text-burgundy">
           {errors.password?.message}
         </p>
         {!nameHidden && (
           <>
             <label
               htmlFor="passwordRepeat"
-              className="relative top-5 top-5 left-12 sm:left-20 bg-tertiary px-2 text-lines text-sm"
+              className="relative top-5 left-3  bg-white px-1 text-turquoise font-thin text-sm"
             >
-              Repite contraseña
+              Repeat password
             </label>
             <input
               {...register("passwordRepeat", {
@@ -119,17 +119,17 @@ export const AccessForm = ({ enterUser, nameHidden }) => {
               type="password"
               id="passwordRepeat"
               name="passwordRepeat"
-              className="mt-2 w-10/12 m-auto block border border-1  rounded-3xl px-4 py-2 focus:outline-none focus:border-primary "
+              className="border mt-2 px-2 sm:py2 font-thin  focus:outline-none focus:border-turquoise focus:border-2 focus:border-solid rounded-md w-full"
               onChange={comparePasswords}
             />
-            <p className="text-center italic text-alert ">
+            <p className="font-thin italic text-burgundy">
               {errors.passwordRepeat?.message}
             </p>
             <p className="text-center italic text-alert ">{passwordMatch}</p>
           </>
         )}
         <button
-          className="mt-8 w-10/12 m-auto block bg-primary text-tertiary shadow-md rounded-3xl px-4 py-2 focus:outline-none focus:border-primary hover:text-secondary hover:bg-tertiary hover:border hover:border-1  hover:border-secondary"
+          className="my-6 sm:py2 w-full border border-turquoise hover:bg-turquoise hover:text-white rounded-md px-2 "
           type="submit"
         >
           Login

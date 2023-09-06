@@ -22,12 +22,9 @@ export const LoginPage = () => {
    * @param {Object} data form field entries from component access form, to which component this function is passed
    */
   const enterUser = async (data) => {
+    console.log("entering user at login page");
     try {
-      await signInWithEmailAndPassword(
-        auth,
-        data.email,
-        data.password
-      );
+      await signInWithEmailAndPassword(auth, data.email, data.password);
 
       navigate("/");
     } catch (error) {
@@ -45,9 +42,9 @@ export const LoginPage = () => {
 
   return (
     <>
-      <section className="max-w-2xl m-auto">
-        <h1 className="mb-10 mt-20 text-center text-primary text-2xl font-thin ">
-          Bienvenido de nuevo!
+      <section className="max-w-2xl m-auto mb-16">
+        <h1 className="mb-10 sm:mt-20 text-center text-turquoise text-2xl font-thin ">
+          Welcome back!
         </h1>
         <article>
           <AccessForm enterUser={enterUser} nameHidden={true} />
@@ -55,18 +52,18 @@ export const LoginPage = () => {
             {errors}
           </p>
         </article>
-        <article className="mx-4 mt-20 border-t border-slate">
-          <p className="relative -top-3 left-1/2 -translate-x-1/2 bg-tertiary w-fit px-2 text-sm text-lines ">
-            Login con
+        <article className="mx-4 mt-10 sm:mt-20 border-t border-slate">
+          <p className="relative -top-3 left-1/2 -translate-x-1/2 bg-white w-fit px-2 font-thin ">
+            Or login with
           </p>
           <LoginGoogle />
-          <p className="mt-10 text-sm text-lines text-center font-thin">
-            Aún no tienes una cuenta?{" "}
+          <p className="sm:mt-10 text-sm text-lines text-center font-thin">
+            Don't have an account yet?{" "}
             <Link
               to="/register"
               className="font-bold hover:text-secondary hover:underline"
             >
-              Regístrate
+              Sign up
             </Link>
           </p>
         </article>

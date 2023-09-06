@@ -39,7 +39,7 @@ export const CategoryContainer = ({ category }) => {
         and shop sustainably!
       </h2>
 
-      <section className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+      <section className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
         {isLoading ? (
           <img src="https://i.gifer.com/ZKZg.gif" alt="loading gif" />
         ) : ok ? (

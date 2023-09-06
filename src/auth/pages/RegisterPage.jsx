@@ -18,7 +18,6 @@ export const RegisterPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [errors, setErrors] = useState("");
-  const [name, setName] = useState("");
 
   /**
    * function that takes user data and uses it to enter user in application using firebase create user with email and password
@@ -99,9 +98,9 @@ export const RegisterPage = () => {
 
   return (
     <>
-      <section className="max-w-2xl m-auto">
-        <h1 className="mb-6 mt-20 text-center text-primary text-2xl font-thin ">
-          Bienvenido!
+      <section className="max-w-2xl m-auto mb-16">
+        <h1 className="mb-6 sm:mt-20 text-center text-turquoise text-2xl font-thin ">
+          Welcome!
         </h1>
         <article>
           <AccessForm enterUser={enterUser} nameHidden={false} />
@@ -110,12 +109,12 @@ export const RegisterPage = () => {
           {errors}
         </p>
         <article className="mx-4 mt-10 border-t border-slate">
-          <p className="relative -top-3 left-1/2 -translate-x-1/2 bg-tertiary w-fit px-2 text-sm text-lines ">
-            Regístrate con
+          <p className="relative -top-3 left-1/2 -translate-x-1/2 bg-white w-fit px-2 font-thin ">
+            Or sign up with
           </p>
           <LoginGoogle />
-          <p className="mt-10 text-sm text-center text-lines font-thin">
-            Ya tienes una cuenta?{" "}
+          <p className="sm:mt-10 text-sm text-center text-lines font-thin">
+            Already have an account?{" "}
             <Link
               to="/login"
               className="font-bold hover:text-secondary hover:underline"

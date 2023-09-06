@@ -59,7 +59,7 @@ export const LoginGoogle = () => {
   return (
     <article>
       <button
-        className="block m-auto w-12 hover:w-14 mt-4 shadow-md p-2 rounded-full"
+        className="block m-auto w-12 hover:w-14 sm:mt-4 shadow-md p-2 rounded-full"
         onClick={loginWithGoogle}
       >
         <img className="w-full" src={google} alt="google logo" />

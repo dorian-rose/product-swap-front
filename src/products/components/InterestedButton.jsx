@@ -5,14 +5,14 @@ import { Link } from "react-router-dom";
  */
 export const InterestedButton = () => {
   return (
-    <Link className="text-center " to="/login">
+    <Link className="text-center mt-2.5" to="/register">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
         viewBox="0 0 24 24"
         strokeWidth={1.5}
         stroke="#315b61"
-        className="w-6 h-6 hover:fill-turquoise"
+        className="w-7 h-7 hover:fill-turquoise"
       >
         <path
           strokeLinecap="round"

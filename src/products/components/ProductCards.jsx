@@ -9,14 +9,10 @@ import { useSelector } from "react-redux";
  * @param {Object} props Object whose properties contain product data
  */
 export const ProductCards = (props) => {
-  const { user } = useAuth0();
   //collect state
-  const {
-    uid,
-    displayName,
-    isAuthenticated,
-    email: userEmail,
-  } = useSelector((state) => state.logged);
+  const { isAuthenticated, email: userEmail } = useSelector(
+    (state) => state.logged
+  );
 
   //deconstruct variables from object to retrieve data of product
   const { title, description, formatdate, image, id_entry, email } = props;
@@ -29,7 +25,7 @@ export const ProductCards = (props) => {
     linkText = "View";
   }
   return (
-    <article className="shadow-lg m-10 md:mx-5 flex flex-col justify-between">
+    <article className="shadow-lg my-10 mx-5 flex flex-col justify-between">
       <div>
         <img className="w-full" src={image} alt={title} />
       </div>
@@ -37,7 +33,7 @@ export const ProductCards = (props) => {
         {title}
       </h3>
       <h4 className="mx-5 capitalize font-light">{description}</h4>
-      <div className="flex justify-start m-5">
+      <div className="flex justify-start m-5 ">
         {isAuthenticated && userEmail != email && (
           <FavouriteButton product={props} />
         )}
@@ -49,7 +45,7 @@ export const ProductCards = (props) => {
           {linkText}
         </Link>
       </div>
-      <p className="m-5 text-xs font-light ">Date posted: {formatdate}</p>
+      <p className="mx-5 mb-5 text-xs font-light ">Date posted: {formatdate}</p>
     </article>
   );
 };
