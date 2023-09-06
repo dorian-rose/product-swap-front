@@ -3,6 +3,7 @@ import { dataFetch } from "../../helpers/fetch";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 
 /**
  *
@@ -22,8 +23,14 @@ export const SendMailForm = (props) => {
     handleSubmit,
   } = useForm({ mode: "all" });
 
-  //declare necessary variables
-  const { user } = useAuth0();
+  //collect user details from state
+  const {
+    uid,
+    displayName,
+    isAuthenticated,
+    email: userEmail,
+    role,
+  } = useSelector((state) => state.logged);
 
   const { title, image, email } = props;
 
@@ -40,8 +47,8 @@ export const SendMailForm = (props) => {
     const url = import.meta.env.VITE_EMAIL_URL;
     const body = {
       message: message,
-      userName: user.name,
-      userEmail: user.email,
+      userName: displayName,
+      userEmail: userEmail,
       sellerEmail: email,
       title: title,
       includeSender: includeSender,
@@ -76,7 +83,7 @@ export const SendMailForm = (props) => {
             <div className="w-16">
               <img
                 className=" border rounded-sm align-center"
-                src={`https://product-exchange.onrender.com/uploads/${image}`}
+                src={image}
                 alt={title}
               />
             </div>
@@ -87,9 +94,7 @@ export const SendMailForm = (props) => {
               })}
               name="message"
               id="message"
-              defaultValue={`Hello! I'm interested in your product, "${title.toLowerCase()}". Please contact me at ${
-                user.email
-              }.`}
+              defaultValue={`Hello! I'm interested in your product, "${title.toLowerCase()}". Please contact me at ${userEmail}.`}
             ></textarea>
           </div>
 

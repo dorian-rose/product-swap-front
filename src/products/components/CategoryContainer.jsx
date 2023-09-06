@@ -34,11 +34,12 @@ export const CategoryContainer = ({ category }) => {
       </h1>
       <Search category={category} />
 
-      <h2 className="tracking-widest text-base md:text-lg font-light mt-7">
-        Look at these {category}...
+      <h2 className="tracking-widest text-sm sm:text-base md:text-lg font-light mt-7">
+        Buy preloved <span className="font-normal">{category}</span>, save money
+        and shop sustainably!
       </h2>
 
-      <section className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+      <section className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
         {isLoading ? (
           <img src="https://i.gifer.com/ZKZg.gif" alt="loading gif" />
         ) : ok ? (

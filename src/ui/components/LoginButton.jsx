@@ -1,15 +1,9 @@
-
-import { useAuth0 } from "@auth0/auth0-react";
+import { Link } from "react-router-dom";
 
 export const LoginButton = () => {
-  const { loginWithRedirect } = useAuth0();
-
   return (
-    <button
-      className="border rounded-md px-1 max-w-fit"
-      onClick={() => loginWithRedirect()}
-    >
+    <Link className="border rounded-md px-1 max-w-fit" to="/login">
       Log In
-    </button>
+    </Link>
   );
 };

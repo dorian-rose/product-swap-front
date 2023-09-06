@@ -1,20 +1,60 @@
 import { Routes, Route, Navigate } from "react-router-dom";
-import { useAuth0 } from "@auth0/auth0-react";
+import { useEffect, useState } from "react";
 import { ProductsRouter } from "./ProductsRouter";
 import { ApiRouter } from "./ApiRouter";
 import { AdminRouter } from "./AdminRouter";
-import { HomePage } from "../products/pages";
+
+import { useDispatch, useSelector } from "react-redux";
+import { setLogged } from "../store/slice/logged/loggedSlice";
+import { auth } from "../config/firebaseConfig";
+import { onAuthStateChanged } from "firebase/auth";
+import { dataFetch } from "../helpers/fetch";
 
 export const AppRouter = () => {
-  const { user, isAuthenticated, isLoading } = useAuth0();
-  console.log(isAuthenticated);
-  if (isLoading) {
-    return <div>Loading ...</div>;
-  }
+  
+  const { isAuthenticated, role } = useSelector((state) => state.logged);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const getUserFromDB = async (email) => {
+      //get user/role from db
+      const url = `${import.meta.env.VITE_USER_URL}user?email=${email}`;
+      const userFromDb = await dataFetch(url);
+      if (userFromDb.ok) {
+        console.log(userFromDb);
+        return userFromDb.data[0].role;
+      } else {
+        return "user";
+      }
+    };
+
+    onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        console.log("in user", user);
+        const { displayName, uid, email, photoURL } = user;
+        const role = await getUserFromDB(email);
+
+        dispatch(
+          setLogged({
+            displayName,
+            uid,
+            email,
+            photoURL,
+            isAuthenticated: true,
+            role,
+          })
+        );
+      } else {
+        dispatch(setLogged({}));
+      }
+    });
+  }, [auth]);
+
   return (
     <Routes>
       {/* if role is admin, redirect to admin routers, else, redirect to product routers */}
-      {user?.role == "admin" ? (
+      {role === "admin" ? (
         <Route path="/*" element={<AdminRouter />} />
       ) : (
         <Route path="/*" element={<ProductsRouter />} />
@@ -24,10 +64,10 @@ export const AppRouter = () => {
       {isAuthenticated ? (
         <Route path="/api/*" element={<ApiRouter />} />
       ) : (
-        <Route path="/api/*" element={<HomePage />} />
+        <Route path="/api/*" element={<Navigate to={"/"} />} />
       )}
-      {user?.role != "admin" && (
-        <Route path="/admin/*" element={<ProductsRouter />} />
+      {role != "admin" && (
+        <Route path="/admin/*" element={<Navigate to={"/"} />} />
       )}
     </Routes>
   );
