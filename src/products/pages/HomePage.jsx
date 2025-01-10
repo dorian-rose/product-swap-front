@@ -1,14 +1,28 @@
 import { useAuth0 } from "@auth0/auth0-react";
+import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getUsers } from "../../store/slice/users/userThunk";
+import { getProducts } from "../../store/slice/products/thunk";
+import { auth } from "../../config/firebaseConfig";
 
 import tree_logo from "../../assets/tree_logo.jpg";
 /**
  * function that returns welcome message jsx. jsx is conditional and view will depend on user/isAuthenticated status
  */
 export const HomePage = () => {
-  const { loginWithRedirect } = useAuth0();
-  const { user, isAuthenticated } = useAuth0();
+  const dispatch = useDispatch();
 
-  //collect data from state
+  // //connect to db
+  // useEffect(() => {
+  //   const urlConnect = `${
+  //     import.meta.env.VITE_PRODUCT_URL
+  //   }entries?limit=1&page=1`;
+  //   dispatch(getProducts(urlConnect, "GET"));
+  // }, []);
+
+  //collect state
+  const { displayName, isAuthenticated } = useSelector((state) => state.logged);
 
   return (
     <>
@@ -16,10 +30,8 @@ export const HomePage = () => {
         <article className="md:flex md:flex-col md:justify-center">
           {isAuthenticated ? (
             <>
-              {" "}
               <h1 className="m-5 md:m-10 capitalize font-light text-center tracking-widest text-2xl md:text-3xl">
-                {" "}
-                Welcome, {user.nickname}!
+                Welcome, {displayName}!
               </h1>
               <h2 className="font-thin mb-5 text-center tracking-widest text-xl text-turquoise">
                 Thank you for using Gumtree
@@ -45,12 +57,12 @@ export const HomePage = () => {
                 you want or need! Exchange, gift and receive to save money and
                 help our environment.
               </p>
-              <button
+              <Link
                 className="m-auto md:mx-0 lg:mx-20 md:my-5 block font-thin border rounded-md px-1 text-center tracking-widest hover:border-teal-400 "
-                onClick={() => loginWithRedirect()}
+                to="/login"
               >
                 Log in or Sign up to get started now!
-              </button>
+              </Link>
             </>
           )}
         </article>

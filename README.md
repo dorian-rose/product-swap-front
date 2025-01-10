@@ -29,7 +29,7 @@ To see open-source backend code for APIs: https://github.com/dorian-rose/product
 
 Code is documented using JSDocs. To read documentation of code:
 
-Deployed website can be viewed here:
+Deployed website can be viewed here: https://gumtree-swap.netlify.app/
 
 ## Database
 
@@ -48,7 +48,3 @@ Website users have accessibility to different parts of the site, depending on th
 The following diagram indicates accessibility and permissions of each role.
 
 <img src="src/assets/roles.png" alt="role permissions for site" style="display: block; margin: 0 auto"/>
-
-https://645913add10ca200b745a042--sprightly-liger-93a8e3.netlify.app/
-
-https://64594de9bc47c01a6d706bfa--splendid-kitten-bebeda.netlify.app/, http://localhost:5173/

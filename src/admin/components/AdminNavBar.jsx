@@ -2,15 +2,18 @@ import { AdminSearch } from "./AdminSearch";
 import { Hamburger } from "../../ui/components/Hamburger";
 import { useState } from "react";
 import { NavLink, Link } from "react-router-dom";
-import { LogoutButton } from "../../ui/components/LogoutButton";
-import { useAuth0 } from "@auth0/auth0-react";
+import { useSelector } from "react-redux";
 import tree_logo from "../../assets/tree_logo.jpg";
+import { Logout } from "../../auth/components/Logout";
 
 /**
  * returns ejs of nav bar, directing via NavLinks to other admin locations
  */
 export const AdminNavBar = () => {
-  const { isAuthenticated } = useAuth0();
+  //collect state
+  const { uid, displayName, isAuthenticated } = useSelector(
+    (state) => state.logged
+  );
   const [menuPosition, setMenuPosition] = useState("hidden");
   const changePosition = () => {
     if (menuPosition == "block") {
@@ -84,7 +87,7 @@ export const AdminNavBar = () => {
             <AdminSearch />
           </li>
           <li className="py-1 md:py-0 md:ms-2">
-            <LogoutButton />
+            <Logout />
           </li>
         </ul>
       </div>

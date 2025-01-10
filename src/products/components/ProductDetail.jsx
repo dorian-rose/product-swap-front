@@ -3,6 +3,8 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { FavouriteButton } from "./FavouriteButton";
 import { InterestedButton } from "./InterestedButton";
 import { ReserveButton } from "./ReserveButton";
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
 
 /**
  * function that receives product data and returns jsx displaying data
@@ -12,17 +14,20 @@ export const ProductDetail = ({ product }) => {
   //navigate to redirect
   const navigate = useNavigate();
   //which buttons are displayed will depend on user property - if authenticated, if product owner and role
-  const { user, isAuthenticated } = useAuth0();
+  //collect state
+  const {
+    uid,
+    displayName,
+    isAuthenticated,
+    email: userEmail,
+    role,
+  } = useSelector((state) => state.logged);
 
   return (
     <>
       <section className="shadow-lg max-w-4xl mx-auto  grid md:grid-cols-2  justify-between">
         <div className="">
-          <img
-            className="w-full"
-            src={`https://product-exchange.onrender.com/uploads/${product.image}`}
-            alt={product.title}
-          />
+          <img className="w-full" src={product.image} alt={product.title} />
         </div>
         <div className="product-info max-w-fit flex flex-col justify-center">
           <h1 className="uppercase tracking-widest text-2xl md:text-3xl m-5 md:m-10 font-light text-turquoise">
@@ -36,13 +41,17 @@ export const ProductDetail = ({ product }) => {
             Date posted: {product.formatdate}
           </p>
           <div className="consumer-buttons m-5 md:m-10">
-            {!user && <InterestedButton />}
+            {!isAuthenticated && <InterestedButton />}
             {isAuthenticated &&
-              user.email != product.email &&
-              user?.role != "admin" && (
+              userEmail != product.email &&
+              role != "admin" && (
                 <div className="flex flex-col">
                   <FavouriteButton product={product} />
-                  <ReserveButton product={product} user={user} />
+                  <ReserveButton
+                    product={product}
+                    userEmail={userEmail}
+                    role={role}
+                  />
                   <button
                     className="w-fit mb-4 mx-1 border border-turquoise hover:bg-turquoise hover:text-white rounded-md px-2 shadow-lg"
                     onClick={() => navigate(`/api/send/${product.id_entry}`)}
@@ -55,9 +64,9 @@ export const ProductDetail = ({ product }) => {
         </div>
       </section>
 
-      {(user?.email == product.email) | (user?.role == "admin") && (
+      {(userEmail == product.email) | (role == "admin") && (
         <div className="seller-buttons flex justify-center">
-          {user?.role != "admin" && (
+          {role != "admin" && (
             <button
               className="text-center border rounded-md border-turquoise m-5  px-5 py-1  hover:bg-turquoise hover:text-white"
               onClick={() => navigate(`/api/update/${product.id_entry}`)}

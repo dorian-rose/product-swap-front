@@ -18,7 +18,7 @@ export const NavBar = () => {
     <nav className="mb-10 border-b pb-5 md:pb-0">
       <div className="w-12">
         <img
-          className="w-12 start-4 absolute top-32 md:top-28"
+          className="w-12 start-4 absolute top-28 md:top-28"
           src={tree_logo}
           alt=""
         />{" "}
@@ -26,7 +26,7 @@ export const NavBar = () => {
       <p className="absolute hidden lg:block start-28 top-28 logo-text text-3xl text-turquoise">
         Gumtree
       </p>
-      <div className="ms-24 flex justify-end pt-4 m-5  md:hidden">
+      <div className="ms-24 flex justify-end mx-5 mt-6  md:hidden">
         <Search />
         {/* {isAuthenticated ? <LogoutButton /> : <LoginButton />} */}
         <Hamburger

@@ -10,6 +10,7 @@ import { dataFetch } from "../../../helpers/fetch"
 export const getUsers = (url, method, body) => {
 
     return async (dispatch, getState) => {
+
         dispatch(startLoadingUsers())
 
         //call fetch
