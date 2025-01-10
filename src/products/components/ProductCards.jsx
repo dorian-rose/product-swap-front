@@ -3,6 +3,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { FavouriteButton } from "./FavouriteButton";
 import { InterestedButton } from "./InterestedButton";
 import { useSelector } from "react-redux";
+import { useEffect } from "react";
 
 /**
  * function that receives data of product and presents it in return jsx

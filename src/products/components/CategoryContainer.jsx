@@ -39,9 +39,13 @@ export const CategoryContainer = ({ category }) => {
         and shop sustainably!
       </h2>
 
-      <section className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      <section className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 min-h-[calc(100vh-342px)]">
         {isLoading ? (
-          <img src="https://i.gifer.com/ZKZg.gif" alt="loading gif" />
+          <img
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+            src="https://i.gifer.com/ZKZg.gif"
+            alt="loading gif"
+          />
         ) : ok ? (
           products.map((product) => (
             <ProductCards key={product.id_entry} {...product} />
